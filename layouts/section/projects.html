@@ -7,13 +7,13 @@
     {{ .Content }}
 
     {{ range .Site.Data.projects }}
-      {{ .company }} <br />
-      <ul>
+      {{ .company }}: <br />
         {{ range .projects }}
-            <li>{{ .name }}</li>
+          <a href="{{ .link }}">
+            <img class="project-item" src="{{ .image }}" />
+          </a>
         {{ end }}
-      </ul>
-
+        <hr>
     {{ end }}
 
     {{ partial "footer.html" . }}
