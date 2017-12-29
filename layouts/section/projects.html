@@ -1,0 +1,23 @@
+{{ partial "head.html" . }}
+<body>
+{{ partial "nav.html" . }}
+{{ partial "profile.html" . }}
+
+<section id="wrapper" class="home">
+    {{ .Content }}
+
+    {{ range .Site.Data.projects }}
+      {{ .company }} <br />
+      <ul>
+        {{ range .projects }}
+            <li>{{ .name }}</li>
+        {{ end }}
+      </ul>
+
+    {{ end }}
+
+    {{ partial "footer.html" . }}
+</section>
+
+{{ partial "js.html" . }}
+</body>

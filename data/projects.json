@@ -1,0 +1,32 @@
+[
+  {
+    "company": "Warply",
+    "projects": [
+      {
+        "name": "AB",
+        "link": "https://play.google.com/store/apps/details?id=gr.ab.vassilopoulos"
+      },
+      {
+        "name": "CNN Greece",
+        "link": "https://play.google.com/store/apps/details?id=com.cnn.cnngreece"
+      },
+      {
+        "name": "Go4More",
+        "link": "https://play.google.com/store/apps/details?id=gr.nbg.go4more"
+      }
+    ]
+  },
+  {
+    "company": "Atcom",
+    "projects": [
+      {
+        "name": "Gregory's E-order",
+        "link": "https://play.google.com/store/apps/details?id=gr.mobile.gregorys"
+      },
+      {
+        "name": "Free Meteo",
+        "link": "https://play.google.com/store/apps/details?id=gr.mobile.freemeteo"
+      }
+    ]
+  }
+]

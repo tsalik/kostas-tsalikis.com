@@ -1,0 +1,24 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Kostas Tsalikis"
+theme = "hugo-theme-cactus-plus"
+
+[params]
+  bio = "The personal blog of an Android developer"
+
+  enableSummary = true
+  useDescriptionReplaceSummary = true
+
+  iconFont = "font-awesome"
+
+  enableShare = true
+
+[social]
+	facebook-square = "https://www.facebook.com/kostas.tsalikis.54"
+	twitter-square = "https://twitter.com/tsalikispk"
+	github-square = "https://github.com/tsalik"
+  linkedin-square = "https://www.linkedin.com/in/kostas-tsalikis-400002126/"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
