@@ -932,4 +932,12 @@ a.symbol:hover {
 .project-item {
   max-width: 30%;
   height: auto;
+  padding: 10px;
+  margin: 10px;
+}
+
+#wrapper.projects {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 0px 20px 100px 20px;
 }
