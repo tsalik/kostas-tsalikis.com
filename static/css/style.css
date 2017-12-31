@@ -929,15 +929,37 @@ a.symbol:hover {
     color: #5694f1;
 }
 
-.project-item {
-  max-width: 30%;
-  height: auto;
-  padding: 10px;
-  margin: 10px;
-}
-
 #wrapper.projects {
     max-width: 70%;
     margin: 0 auto;
     padding: 0px 20px 100px 20px;
+}
+
+.responsive-image {
+  max-width: 100%;
+}
+
+.cell img {
+  display: block;
+}
+
+@media screen and (min-width: 600px) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .cell {
+    width: calc(50% - 2rem);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .cell {
+    width: calc(33.3333% - 2rem);
+  }
+}
+
+.cell {
+  margin: 1rem;
 }

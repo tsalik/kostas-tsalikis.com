@@ -7,12 +7,16 @@
     {{ .Content }}
 
     {{ range .Site.Data.projects }}
-      {{ .company }}: <br />
-        {{ range .projects }}
-          <a href="{{ .link }}">
-            <img class="project-item" src="{{ .image }}" />
-          </a>
-        {{ end }}
+      <h4>{{ .company }}:</h4>
+        <div class="grid">
+          {{ range .projects }}
+          <div class="cell">
+            <a href="{{ .link }}">
+              <img class="responsive-image" src="{{ .image }}" />
+            </a>
+          </div>
+          {{ end }}
+        </div>
         <hr>
     {{ end }}
 
