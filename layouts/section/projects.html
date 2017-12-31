@@ -10,11 +10,11 @@
       <h4>{{ .company }}:</h4>
         <div class="grid">
           {{ range .projects }}
-          <div class="cell">
-            <a href="{{ .link }}">
-              <img class="responsive-image" src="{{ .image }}" />
+            <a class="cell" href="{{ .link }}">
+                <img class="responsive-image" src="{{ .image }}" />
+                <h5>{{ .name }}</h5>
+                <p>{{ .description }}</p>
             </a>
-          </div>
           {{ end }}
         </div>
         <hr>

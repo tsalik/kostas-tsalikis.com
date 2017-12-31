@@ -936,11 +936,21 @@ a.symbol:hover {
 }
 
 .responsive-image {
-  max-width: 100%;
+  max-width: 35%;
+  margin: auto;
 }
 
 .cell img {
   display: block;
+}
+
+.cell h5 {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+.cell p {
+  color: #8a8a8a;
 }
 
 @media screen and (min-width: 600px) {
@@ -948,6 +958,7 @@ a.symbol:hover {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    align-items: stretch;
   }
   .cell {
     width: calc(50% - 2rem);
@@ -962,4 +973,19 @@ a.symbol:hover {
 
 .cell {
   margin: 1rem;
+  box-shadow: 1px 1px 3px 0px  rgba(0,0,0,0.3);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+.cell:hover {
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
+  transition: 0.1s ease-out;
+}
+
+.cell:hover p {
+  color: #5694f1;
+  transition: 0.1s ease-out;
 }

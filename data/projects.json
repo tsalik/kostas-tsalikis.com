@@ -5,17 +5,20 @@
       {
         "name": "AB",
         "link": "https://play.google.com/store/apps/details?id=gr.ab.vassilopoulos",
-        "image": "https://lh3.ggpht.com/N2H0g4eJU1NyLdBYp871oxcnh9q4cM9MOh5fNiys2YimRDhEvgntubdLKPDt4iXvSQ=w300"
+        "image": "https://lh3.ggpht.com/N2H0g4eJU1NyLdBYp871oxcnh9q4cM9MOh5fNiys2YimRDhEvgntubdLKPDt4iXvSQ=w300",
+        "description": "Android app for AB Vasilopoulos, one of the biggest super markets in Greece"
       },
       {
         "name": "CNN Greece",
         "link": "https://play.google.com/store/apps/details?id=com.cnn.cnngreece",
-        "image": "https://lh3.googleusercontent.com/y86W50lxS1xIMjOujCDgDqGh1yIYBaTWG3H0q-D8rcdgBDO8BE_i8JTML1hydCaFMg4=w300"
+        "image": "https://lh3.googleusercontent.com/y86W50lxS1xIMjOujCDgDqGh1yIYBaTWG3H0q-D8rcdgBDO8BE_i8JTML1hydCaFMg4=w300",
+        "description": "The Android app for CNN Greece, supporting videos as well saving your favorite articles"
       },
       {
-        "name": "Go4More",
+        "name": "go4More",
         "link": "https://play.google.com/store/apps/details?id=gr.nbg.go4more",
-        "image": "https://lh3.ggpht.com/Go3T84E_Br8gBU8aY_uXDdD7rFnqQ_SyzFQ1Wci4U4E_vW3VpBVokldMCp2gAXXbQug=w300"
+        "image": "https://lh3.ggpht.com/Go3T84E_Br8gBU8aY_uXDdD7rFnqQ_SyzFQ1Wci4U4E_vW3VpBVokldMCp2gAXXbQug=w300",
+        "description": "The version 2 of go4more App, the loyalty program of National Bank of Greece"
       }
     ]
   },
@@ -23,14 +26,16 @@
     "company": "Atcom",
     "projects": [
       {
-        "name": "Gregory's E-order",
+        "name": "Gregory's",
         "link": "https://play.google.com/store/apps/details?id=gr.mobile.gregorys",
-        "image": "https://lh3.googleusercontent.com/047MzxOdQox0pHibDeR-3mvN_4B_x-KHj1H20TX6huTaNel95Z7IZfHMkef73-RCFaY=w300"
+        "image": "https://lh3.googleusercontent.com/047MzxOdQox0pHibDeR-3mvN_4B_x-KHj1H20TX6huTaNel95Z7IZfHMkef73-RCFaY=w300",
+        "description": "E-ordering app for Gregory's"
       },
       {
-        "name": "Free Meteo",
+        "name": "Freemeteo",
         "link": "https://play.google.com/store/apps/details?id=gr.mobile.freemeteo",
-        "image": "https://lh3.googleusercontent.com/O3Ncx5cq4eQVf4gehGVRqjfj1cNQdBBZ4Y2FNOhxs1E9ipynpXfE5CXHMrMib7E5jL67=w300"
+        "image": "https://lh3.googleusercontent.com/O3Ncx5cq4eQVf4gehGVRqjfj1cNQdBBZ4Y2FNOhxs1E9ipynpXfE5CXHMrMib7E5jL67=w300",
+        "description": "A weather app"
       }
     ]
   }
