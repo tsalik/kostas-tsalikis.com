@@ -1,7 +1,7 @@
 ---
 title: "My First Blog Post"
 date: 2017-12-28T00:34:25+02:00
-draft: false
+draft: true
 description: "How I created this blog with Hugo"
 tags: ["Hugo"]
 ---
