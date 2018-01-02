@@ -1,13 +1,14 @@
 ---
 title: "My First Blog Post"
 date: 2017-12-28T00:34:25+02:00
-draft: true
-description: "This is the summary of the first post"
-tags: ["tag1", "tag2"]
+draft: false
+description: "How I created this blog with Hugo"
+tags: ["Hugo"]
 ---
 
-Donec rutrum congue leo eget malesuada. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh. Proin eget tortor risus. Proin eget tortor risus. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Cras ultricies ligula sed magna dictum porta.
+Hi everyone, and welcome to my first ever blogpost! I've been meaning to begin a technical blog about Android development for ages, and at last the time has come. This first post however will not be Android related -- instead I will break down how and why I chose Hugo and how I deployed the blog.
 
-Vivamus suscipit tortor eget felis porttitor volutpat. Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci porta dapibus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+# Hugo vs Jekyll
+Since I needed something easy to setup and customize, I decided to go with the solution of [static site generators](https://www.staticgen.com/). I tried to play with the two highest ranked, [Jekyll](https://jekyllrb.com/) (Ruby) and [Hugo](http://gohugo.io/) (Go), which both have a strong community and offer a plethora of themes.
 
-Sed porttitor lectus nibh. Pellentesque in ipsum id orci porta dapibus. Donec sollicitudin molestie malesuada. Proin eget tortor risus. Sed porttitor lectus nibh. Curabitur aliquet quam id dui posuere blandit. Donec sollicitudin molestie malesuada. Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
+Both are fun, but with Jekyll you have to deal with RubyGems. On the other hand, the only thing that Hugo needs is the Go executable. In the end I chose Hugo, as I wouldn't have to live with the pain of dealing with Ruby in case of migrating, and overall I felt that Hugo worked pretty straightforward for me. You just [download a theme](https://themes.gohugo.io/), make some changes on config.toml, add some content via [Markdown](https://daringfireball.net/projects/markdown/) and you're ready to go!
