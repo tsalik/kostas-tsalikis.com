@@ -1,41 +1,88 @@
 [
   {
-    "company": "Warply",
-    "projects": [
-      {
-        "name": "AB",
-        "link": "https://play.google.com/store/apps/details?id=gr.ab.vassilopoulos",
-        "image": "https://lh3.ggpht.com/N2H0g4eJU1NyLdBYp871oxcnh9q4cM9MOh5fNiys2YimRDhEvgntubdLKPDt4iXvSQ=w300",
-        "description": "Android app for AB Vasilopoulos, one of the biggest super markets in Greece"
-      },
-      {
-        "name": "CNN Greece",
-        "link": "https://play.google.com/store/apps/details?id=com.cnn.cnngreece",
-        "image": "https://lh3.googleusercontent.com/y86W50lxS1xIMjOujCDgDqGh1yIYBaTWG3H0q-D8rcdgBDO8BE_i8JTML1hydCaFMg4=w300",
-        "description": "The Android app for CNN Greece, supporting videos as well saving your favorite articles"
-      },
-      {
-        "name": "go4More",
-        "link": "https://play.google.com/store/apps/details?id=gr.nbg.go4more",
-        "image": "https://lh3.ggpht.com/Go3T84E_Br8gBU8aY_uXDdD7rFnqQ_SyzFQ1Wci4U4E_vW3VpBVokldMCp2gAXXbQug=w300",
-        "description": "The version 2 of go4more App, the loyalty program of National Bank of Greece"
-      }
-    ]
-  },
-  {
     "company": "Atcom",
     "projects": [
       {
         "name": "Gregory's",
         "link": "https://play.google.com/store/apps/details?id=gr.mobile.gregorys",
         "image": "https://lh3.googleusercontent.com/047MzxOdQox0pHibDeR-3mvN_4B_x-KHj1H20TX6huTaNel95Z7IZfHMkef73-RCFaY=w300",
-        "description": "E-ordering app for Gregory's"
+        "description": "E-ordering app for Gregory's",
+        "show": true
       },
       {
         "name": "Freemeteo",
         "link": "https://play.google.com/store/apps/details?id=gr.mobile.freemeteo",
         "image": "https://lh3.googleusercontent.com/O3Ncx5cq4eQVf4gehGVRqjfj1cNQdBBZ4Y2FNOhxs1E9ipynpXfE5CXHMrMib7E5jL67=w300",
-        "description": "A weather app"
+        "description": "A weather app",
+        "show": true
+      },
+      {
+        "name": "mynet profile photo",
+        "link": "https://play.google.com/store/apps/details?id=gr.mobile.cosmote",
+        "image": "https://lh3.googleusercontent.com/cK2UTTgf8ke72YLevPQRXrA9u5nPsUeWosjfVH8BUyhmWUSlvLH-YPjtU_q9cQhSCX4=w300-rw",
+        "description": "A photo editing app",
+        "show": false
+      },
+      {
+        "name": "Pizza Hut Greece",
+        "link": "https://play.google.com/store/apps/details?id=gr.mobile.pizzahut",
+        "image": "https://lh3.googleusercontent.com/UIMs-p2Up2xgmxQ9UAUbu3MqZ2tObeaFlTeRMrz1g_Ur8Xg5zfCOP5lwc6p6YtzdHA79=w300-rw",
+        "description": "E-ordering for Pizza Hut Greece",
+        "show": false
+      }
+    ]
+  },
+  {
+    "company": "Warply",
+    "projects": [
+      {
+        "name": "AB",
+        "link": "https://play.google.com/store/apps/details?id=gr.ab.vassilopoulos",
+        "image": "https://lh3.ggpht.com/N2H0g4eJU1NyLdBYp871oxcnh9q4cM9MOh5fNiys2YimRDhEvgntubdLKPDt4iXvSQ=w300",
+        "description": "Android app for AB Vasilopoulos, one of the biggest super markets in Greece",
+        "show": true
+      },
+      {
+        "name": "CNN Greece",
+        "link": "https://play.google.com/store/apps/details?id=com.cnn.cnngreece",
+        "image": "https://lh3.googleusercontent.com/y86W50lxS1xIMjOujCDgDqGh1yIYBaTWG3H0q-D8rcdgBDO8BE_i8JTML1hydCaFMg4=w300",
+        "description": "The Android app for CNN Greece, supporting videos as well saving your favorite articles",
+        "show": true
+      },
+      {
+        "name": "go4More",
+        "link": "https://play.google.com/store/apps/details?id=gr.nbg.go4more",
+        "image": "https://lh3.ggpht.com/Go3T84E_Br8gBU8aY_uXDdD7rFnqQ_SyzFQ1Wci4U4E_vW3VpBVokldMCp2gAXXbQug=w300",
+        "description": "The version 2 of go4more App, the loyalty program of National Bank of Greece",
+        "show": true
+      },
+      {
+        "name": "SpiritsUP",
+        "link": "https://play.google.com/store/apps/details?id=gr.karoulias.spiritsup",
+        "image": "https://lh3.googleusercontent.com/HD2xhGPpdHV42I5kHlXw2wGANXCVqI_u43Q4g3agTo3T6iMnyeSE56Q1mMWU910sbFA=w300-rw",
+        "description": "W.S. KAROULIAS app",
+        "show": false
+      },
+      {
+        "name": "Greeks Do Eat Better",
+        "link": "https://play.google.com/store/apps/details?id=gr.marinopoulos.greeksdoeatbetter",
+        "image": "https://lh3.googleusercontent.com/VlFZJQ5peYWiLC-EG2gSkjTlumfKxm_hTc8nWmtsghVIXt-jAP2X35lNeiuqiUU1dA=w300-rw",
+        "description": "Social app for Greek producers and products",
+        "show": false
+      },
+      {
+        "name": "Noiazomai",
+        "link": "https://play.google.com/store/apps/details?id=gr.nestle.noiazomai",
+        "image": "https://lh3.googleusercontent.com/AW3GhWCveEZq3S-JjGGUldJr6lVivWU8Fk2rlxSCJptHSyr33GgvgETGQUiAciL36YU=w300-rw",
+        "description": "Loyalty app for Nestle Greece",
+        "show": false
+      },
+      {
+        "name": "Nobacco Privilege",
+        "link": "https://play.google.com/store/apps/details?id=gr.nobacco",
+        "image": "https://lh3.googleusercontent.com/XJqUKMmgdW6FTdM5rGr1geqCogK32CNINMDZP60HGuXf1hAcLv99btZaQpNtuRK19AI=w300-rw",
+        "description": "Loyalty app for Nobacco",
+        "show": false
       }
     ]
   }
