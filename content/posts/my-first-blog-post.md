@@ -1,8 +1,8 @@
 ---
-title: "My First Blog Post"
+title: "Blogging with Hugo"
 date: 2017-12-28T00:34:25+02:00
 draft: true
-description: "How I created this blog with Hugo"
+description: "How I built and deployed this blog."
 tags: ["Hugo"]
 ---
 
