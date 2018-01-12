@@ -4,7 +4,7 @@ title = "Kostas Tsalikis"
 theme = "hugo-theme-cactus-plus"
 
 [params]
-  bio = "Trials and tribulations on crafting Android"
+  bio = "Trials and tribulations of Android development"
 
   enableSummary = true
   useDescriptionReplaceSummary = true
