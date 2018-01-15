@@ -38,8 +38,10 @@
                 {{ partial "share.html" . }}
             {{ end }}
 
-            {{ if .Site.Params.enableDisqus }}
-                {{ partial "disqus.html" . }}
+            {{ if eq (getenv "HUGO_ENV") "production" }}
+              {{ if .Site.Params.enableDisqus }}
+                  {{ partial "disqus.html" . }}
+              {{ end }}
             {{ end }}
 
             {{ if .Site.Params.showLatestPosts }}

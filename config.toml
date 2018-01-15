@@ -9,6 +9,9 @@ theme = "hugo-theme-cactus-plus"
   enableSummary = true
   useDescriptionReplaceSummary = true
 
+  enableDisqus = true
+  disqusShortname = "droidship-com"
+
   iconFont = "font-awesome"
 
   enableShare = true
