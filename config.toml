@@ -2,6 +2,7 @@ baseURL = "/"
 languageCode = "en-us"
 title = "Kostas Tsalikis"
 theme = "hugo-theme-cactus-plus"
+googleAnalytics = "UA-112509011-1"
 
 [params]
   bio = "Trials and tribulations of Android development"
@@ -11,6 +12,8 @@ theme = "hugo-theme-cactus-plus"
 
   enableDisqus = true
   disqusShortname = "droidship-com"
+
+  enableGoogleAnalytics = true
 
   iconFont = "font-awesome"
 
