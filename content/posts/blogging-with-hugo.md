@@ -1,7 +1,6 @@
 ---
 title: "Blogging with Hugo"
-date: 2017-12-28T00:34:25+02:00
-draft: true
+date: 2018-01-14T00:34:25+02:00
 description: "How I built and deployed this blog."
 tags: ["Hugo"]
 ---
