@@ -29,7 +29,7 @@ The name of the technique is a little bit misleading, as it contains the term "b
 The steps for BbA are:
 
 1. Add an abstraction over the current old implementation.
-2. Refactor so all the clients use the abstraction above instead the old implementation directly.
+2. Refactor so all the clients use the abstraction above instead of the old implementation directly.
 3. Add the new implementation under that abstraction and gradually delegate to the new implementation as needed.
 4. Once the old implementation is no longer used, the abstraction above can be deleted along with the code to be replaced.
 
@@ -87,7 +87,7 @@ As you add more and more methods in your new implementation, the old one and the
 
 ## Final Thoughts
 
-So far, BbA seems to be quite a sane way for making large-scale changes in your codebase. It may not be always easy to make the old and new implementations coexist, but all in all it seems to be worth the effort. What's more, we can use the power of Kotlin's delegation to quickly implement only a set of behaviours in order to provide a proof of concept, and the continue with the rest of the refactoring.
+So far, BbA seems to be quite a sane way for making large-scale changes in your codebase. It may not be always easy to make the old and new implementations coexist, but all in all, it seems to be worth the effort. What's more, we can use the power of Kotlin's delegation to quickly implement only a set of behaviours in order to provide a proof of concept, and then continue with the rest of the refactoring.
 
 [1]: https://paulhammant.com/2013/04/05/what-is-trunk-based-development/
 [2]: https://martinfowler.com/bliki/BranchByAbstraction.html
