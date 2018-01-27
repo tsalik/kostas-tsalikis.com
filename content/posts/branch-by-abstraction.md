@@ -1,6 +1,6 @@
 ---
 title: "Branch by Abstraction powered by Kotlin"
-date: 2018-01-19T20:34:20+02:00
+date: 2018-01-21T20:34:20+02:00
 draft: true
 description: "A technique for making large-scale changes in software with a Kotlin twist."
 tags: ["Refactoring", "Continuous Integration", "Continuous Delivery"]
@@ -26,12 +26,21 @@ Quoted directly from [Martin Fowler][2]:
 
 The name of the technique is a little bit misleading, as it contains the term "branch" in its definition, which almost immediately hints that we're speaking about branching as in creating a new branch in source control. On the contrary, the technique is advocated by [trunk based development](https://trunkbaseddevelopment.com/), a source control branching model where all developers push directly in the mainline. Rather than branching in source control, the *"branching"* happens in the code directly.
 
+Let's say the initial structure of your code is something like this:
+
+{{< caption image="/images/posts/bba/initial_structure.png" alt="Initial structure" caption="Initial Structure." margin="10px 50px 50px 50px">}}
+
 The steps for BbA are:
 
 1. Add an abstraction over the current old implementation.
 2. Refactor so all the clients use the abstraction above instead of the old implementation directly.
+   {{< caption image="/images/posts/bba/step1-2.png" alt="Steps 1 & 2" caption="Steps 1 & 2." margin="10px 50px 50px 50px" >}}
 3. Add the new implementation under that abstraction and gradually delegate to the new implementation as needed.
-4. Once the old implementation is no longer used, the abstraction above can be deleted along with the code to be replaced.
+   {{< caption image="/images/posts/bba/step3.png" alt="Step 3" caption="Step 3." margin="10px 50px 50px 50px" >}}
+4. Once the old implementation is no longer used, it can be deleted.
+   {{< caption image="/images/posts/bba/step4.png" alt="Step 4" caption="Step 4." margin="10px 50px 50px 50px" >}}
+5. Once the refactoring is over, delete the abstraction layer.
+   {{< caption image="/images/posts/bba/step5.png" alt="Step 4" caption="Step 4." margin="10px 50px 50px 50px" >}}
 
 Although Martin Fowler describes some variations, the general idea is that you create an abstraction over the implementation that needs replacement, find the appropriate behaviour that the abstraction must implement, change the client code to use that abstraction and incrementally add the new code.
 
