@@ -1009,7 +1009,12 @@ a.symbol:hover {
   transition: 0.1s ease-out;
 }
 
-.image-caption p {
+.image-caption {
+  width: calc(90% - 1rem);
+  margin: auto;
+}
+
+.image-caption-text {
   text-align: center;
   font-style: italic;
 }
