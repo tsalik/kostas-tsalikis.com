@@ -993,3 +993,8 @@ a.symbol:hover {
   color: #5694f1;
   transition: 0.1s ease-out;
 }
+
+.image-caption p {
+  text-align: center;
+  font-style: italic;
+}
