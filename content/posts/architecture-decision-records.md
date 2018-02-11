@@ -59,4 +59,8 @@ Keeping ADRs seems to be a good way to save decisions that will later give good 
 
 {{< tweet 940007477642432514 >}}
 
-ADRs is a technique that Thoughtworks has in the latest [Technology Radar](https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records) as adopted, at the time of this posts' writing. Although I firstly stumbled upon it from a Nat Pryce's tweet on his ADR Tools, its quite serendipitous that after a few months it was marked as an adopoted technique from Thoughtworks.
+I think that it should be better, before starting coding a decision that affects the architecture of a system, to first write it down as an ADR(just as you would first add a test before the real implementation in TDD).
+
+This way, you are obliged to document the constraints under which you made the decision as the *Context* of the ADR, and document the *Consequences* as well, so you are in a position to validate that the change that you are about to introduce is built upon sound foundations.
+
+What's more, even if you change your mind about that decision and want to amend it with another one, you will already have documented it. The next person that will see the documentation, will be available to see a train of thoughts, and not a ladder that has some steps skipped. The decisions will make more sense, and that person will be in a position to better understand them, and in return accept or modify them.
