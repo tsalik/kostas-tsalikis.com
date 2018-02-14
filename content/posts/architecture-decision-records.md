@@ -1,8 +1,9 @@
 ---
 title: "Architecture Decision Records"
-date: 2018-02-10T14:42:41+02:00
+date: 2018-02-14T14:42:41+02:00
 draft: true
-tags: ["Refactoring", "Documentation"]
+description: "Documenting the technical decisions of evolving systems."
+tags: ["Documentation", "Refactoring"]
 ---
 
 In a [previous post]({{< relref "branch-by-abstraction.md">}}), we tackled the problem of doing a large change in your system incrementally. During refactoring, you can stumble upon a lot of problems, but one of the greatest is, how do you react to a past decision that you cannot understand? Do you accept it, with the risk of continuing to pay the technical debt associated with it? Or do you discard it, with the risk of losing some important semantics that should't be lost along the way?
@@ -24,6 +25,10 @@ The key in having successful documentation is to keep it updated in version cont
 Keeping ADRs is a powerful technique, as it captures not only the decisions, but under what circumstances were made and documents the consequences at the time that the decision was actually made.
 
 Even when a decision is superseded or amended by another one, Michael Nygard suggests that you never delete it, but mark it as superseded by the new decision. This way you can see how the code has evolved over time and you can also checkout from version control the commit that the decision was made and see what forces drove the author of the decision to make it.
+
+Before presenting the appropriate tooling to successfully keep documentation of our decisions, let’s question ourselves, what kind of decisions should we document? If we end up saving every little detail, then the objective of keeping the documentation as small as possible and to the point fails. As Michael Nygard puts it himself, the decisions that we ought to keep are:
+
+> those that affect the structure, non-functional characteristics, dependencies, interfaces, or construction techniques
 
 ## Tools for using ADRs
 
