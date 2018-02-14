@@ -11,12 +11,6 @@ If you're lucky enough, the person that made that decision will be one or two de
 
 You all know that saving the decisions in some kind of wiki is not going to work. Large documentation files are scarcely updated along with the code, and most developers just lose their focus when they have to move away from the code and filter a large document. What's more, you can't keep that kind of files in version control due to their size.
 
-## What kind of decisions affect the Architecture?
-
-Before presenting ways to successfully keep documentation of our decisions, let's question ourselves, what kind of decisions should we document? If we end up saving every little detail, then the objective of keeping the documentation as small as possible and to the point fails. As Michael Nygard puts it himself, the decisions that we ought to keep are:
-
-> those that affect the structure, non-functional characteristics, dependencies, interfaces, or construction techniques
-
 ## Documenting with Architecture Decision Records.
 
 The key in having successful documentation is to keep it updated in version control in small files. This is what Michael Nygard proposed in his [Architecture Decision Records](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions)(from now on *ADRs*). ADRs are text files that save the architecture decisions taken over time and have the following format:
@@ -29,17 +23,17 @@ The key in having successful documentation is to keep it updated in version cont
 
 Keeping ADRs is a powerful technique, as it captures not only the decisions, but under what circumstances were made and documents the consequences at the time that the decision was actually made.
 
-It's worth noting that even when a decision is superseded or amended by another one, Michael Nygard suggests that you never delete it, but mark it as superseded by the new decision. This way you can see how the code has evolved over time and you can also checkout from version control the commit that the decision was made and see what forces drove the author of the decision to make it.
+Even when a decision is superseded or amended by another one, Michael Nygard suggests that you never delete it, but mark it as superseded by the new decision. This way you can see how the code has evolved over time and you can also checkout from version control the commit that the decision was made and see what forces drove the author of the decision to make it.
 
 ## Tools for using ADRs
 
-So let's say that you're now convinced that saving ADRs is a technique worth giving a shot. How should you implement it? Fortunately, Nat Pryce has made available in GitHub his [ADR Tools](https://github.com/npryce/adr-tools). ADR Tools is a set of command lines that create ADRs in markdown. It's installation instructions are available [here](https://github.com/npryce/adr-tools/blob/master/INSTALL.md). After installing, you just have to type in command line:
+So let's say that you're now convinced that saving ADRs is a technique worth giving a shot. How should you implement it? Fortunately, Nat Pryce has made available his [ADR Tools](https://github.com/npryce/adr-tools). ADR Tools is a set of command lines that create ADRs in markdown. The installation instructions are available [here](https://github.com/npryce/adr-tools/blob/master/INSTALL.md). After installing, you just have to type the following command:
 
 ```bash
 adr init your/documentation/directory
 ```
 
-This will create the first ADR, saved in a markdown file, which documents the decision to start using ADRs and will store it in the given directory.
+This will create the very first ADR, saved in a markdown file. It's also worth noting that the first thing documented is your decision to start using ADRs.
 
 When you will add a new ADR you will simply give the following command:
 
@@ -53,13 +47,15 @@ A more exhaustive description of how to use ADR Tools is available [here](https:
 adr help
 ```
 
+Except from the help command above, Nat Pryce has also written down the decisions that were made during the development of the Tools as [ADRs](https://github.com/npryce/adr-tools/tree/master/doc/adr). This is a helpful example of real life usage of ADRs, that can guide us during our(let's be honest with ourselves, not so fascinating) journey to meaningful documentation.
+
 ## Final thoughts
 
 Keeping ADRs seems to be a good way to save decisions that will later give good insight during refactoring. It is quite possible that you will not be the person responsible for that refactoring, or even if you are, then Eagleson's law will be applied:
 
 {{< tweet 940007477642432514 >}}
 
-I think that it should be better, before starting coding a decision that affects the architecture of a system, to first write it down as an ADR(just as you would first add a test before the real implementation in TDD).
+Before starting coding a decision that affects the architecture of a system, I think maybe it should be better to write it down as an ADR(just as you would first add a test before the real implementation in TDD).
 
 This way, you are obliged to document the constraints under which you made the decision as the *Context* of the ADR, and document the *Consequences* as well, so you are in a position to validate that the change that you are about to introduce is built upon sound foundations.
 
