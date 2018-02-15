@@ -1,7 +1,6 @@
 ---
 title: "Architecture Decision Records"
 date: 2018-02-14T14:42:41+02:00
-draft: true
 description: "Documenting the technical decisions of evolving systems."
 tags: ["Documentation", "Refactoring"]
 ---
