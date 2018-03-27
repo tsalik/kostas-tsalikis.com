@@ -2,7 +2,7 @@
 title: "Branch by Abstraction powered by Kotlin"
 date: 2018-01-21T20:34:20+02:00
 description: "A technique for making large-scale changes in software with a Kotlin twist."
-tags: ["Refactoring", "Continuous Integration", "Continuous Delivery"]
+tags: ["Refactoring", "Continuous Integration", "Continuous Delivery", "Kotlin"]
 ---
 
 ## A case of a large-scale refactoring.
