@@ -4,6 +4,28 @@ title = "Kostas Tsalikis"
 theme = "hugo-theme-cactus-plus"
 googleAnalytics = "UA-112509011-1"
 
+[privacy]
+  [privacy.disqus]
+    disable = false
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+    disable = false
+    respectDoNotTrack = true
+    useSessionStorage = true
+  [privacy.instagram]
+    disable = false
+    simple = false
+  [privacy.speakerDeck]
+    disable = false
+  [privacy.twitter]
+    disable = false
+    enableDNT = false
+  [privacy.vimeo]
+    disable = false
+  [privacy.youtube]
+    disable = false
+    privacyEnhanced = false
+
 [params]
   bio = "Trials and tribulations of Android development"
 
