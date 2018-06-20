@@ -33,9 +33,6 @@ googleAnalytics = "UA-112509011-1"
   enableSummary = true
   useDescriptionReplaceSummary = true
 
-  enableDisqus = true
-  disqusShortname = "droidship-com"
-
   enableGoogleAnalytics = true
 
   iconFont = "font-awesome"
