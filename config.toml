@@ -9,7 +9,7 @@ googleAnalytics = "UA-112509011-1"
     disable = true
   [privacy.googleAnalytics]
     anonymizeIP = true
-    disable = false
+    disable = true
     respectDoNotTrack = true
     useSessionStorage = true
   [privacy.instagram]
