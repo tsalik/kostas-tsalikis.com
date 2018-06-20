@@ -47,3 +47,7 @@ googleAnalytics = "UA-112509011-1"
 
 [taxonomies]
   tag = "tags"
+
+[services]
+  [services.twitter]
+    disableInlineCSS = true
