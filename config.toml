@@ -3,6 +3,8 @@ languageCode = "en-us"
 title = "Kostas Tsalikis"
 theme = "hugo-theme-cactus-plus"
 googleAnalytics = "UA-112509011-1"
+pygmentsUseClasses=true
+pygmentsCodefences=true
 
 [privacy]
   [privacy.disqus]

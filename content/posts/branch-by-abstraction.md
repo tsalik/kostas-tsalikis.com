@@ -67,19 +67,69 @@ Of course, talk is cheap and a simple but non trivial example is worth a thousan
 
 For QuotesApp we will use a MVP pattern. The Presenters will hold a QuotesRepository directly instead of UseCases and the QuotesRepository will have a QuotesDataSource for storing the quotes locally. In the role of our legacy library we will use SqlBrite2 and we will try to replace it gradually with the new Room library. The full code of the example is [here](https://github.com/tsalik/BranchByAbstractionExample).
 
-{{< gist tsalik a198ab7e39f45c2bf8f14dd904961e42 "QuotesDataSource.java" >}}
+```java
+public interface QuotesDataSource {
 
-{{< gist tsalik a198ab7e39f45c2bf8f14dd904961e42 "SqlBriteQuotesDataSource.java" >}}
+    Observable<List<Quote>> getSavedQuotes();
+
+    Observable<Boolean> add(Quote quote);
+
+}
+```
+
+```java
+public class SqlBriteQuotesDataSource implements QuotesDataSource {
+
+    private final BriteDatabase briteDatabase;
+
+    public SqlBriteQuotesDataSource(BriteDatabase briteDatabase) {
+        this.briteDatabase = briteDatabase;
+    }
+
+    @Override
+    public Observable<List<Quote>> getSavedQuotes() {
+        // get quotes with SqlBrite
+    }
+
+    @Override
+    public Observable<Boolean> add(Quote quote) {
+        // save a quote with SqlBrite
+    }
+}
+```
 
 We will use the QuotesDataSource interface to introduce the abstraction needed for our BbA powered refactoring. In Java this would look something like below. We would make the abstraction implement the QuotesDataSource and then manually delegate all method calls to the old implementation. Then in our dependency injector we would wrap the Sqlite implementation with the new mixed data source.
 
-{{< gist tsalik a198ab7e39f45c2bf8f14dd904961e42 "MixedSqliBriteRoomDataSource.java" >}}
+```java
+public class MixedSqliBriteRoomDataSource implements QuotesDataSource {
+
+    private final QuotesDataSource oldDataSource;
+
+    public MixedSqliBriteRoomDataSource(QuotesDataSource oldDataSource) {
+        this.oldDataSource = oldDataSource;
+    }
+
+    @Override
+    public Observable<List<Quote>> getSavedQuotes() {
+        return oldDataSource.getSavedQuotes();
+    }
+
+    @Override
+    public Observable<Boolean> add(Quote quote) {
+        return oldDataSource.add(quote);
+    }
+
+}
+```
 
 ## Excuse me, where is my Kotlin twist?
 
 In this example we only have two methods, but one can imagine a huge api with a hundred or more methods. Wouldn't it be tedious and error prone to manually delegate to the old implementation? So far, Kotlin has not shown up in the post, and now is the time to make its magical appearance. We could use the power of Kotlin's built in delegation and make the abstraction delegate by default to the old implementation:
 
-{{< gist tsalik a198ab7e39f45c2bf8f14dd904961e42 "MixedSqliteRoomDataSource.kt" >}}
+```kt
+class MixedSqliteRoomDataSource(private val oldDataSource: QuotesDataSource)
+: QuotesDataSource by oldDataSource
+```
 
 This is not only terse and concise, but also saves you from the errors that anyone can easily do during manual delegation.
 
@@ -87,7 +137,17 @@ This is not only terse and concise, but also saves you from the errors that anyo
 
 Continuing with the refactoring, we would introduce the new implementation, and pass it as a second argument to our abstraction. Then finally, we would override only some of the methods in our abstraction to delegate to the new implementation.
 
-{{< gist tsalik a198ab7e39f45c2bf8f14dd904961e42 "MixedSqliBriteRoomDataSource2.kt" >}}
+```kt
+class MixedSqliteRoomDataSource(private val oldDataSource: QuotesDataSource,
+                                private val newDataSource: QuotesDataSource)
+    : QuotesDataSource by oldDataSource {
+
+    override fun getSavedQuotes(): Observable<MutableList<Quote>> {
+        return newDataSource.savedQuotes
+    }
+
+}
+```
 
 This is much easier to push directly to the mainline, or if you're in favour of code reviews, make a short lived version control branch and open a pull request from there.
 
