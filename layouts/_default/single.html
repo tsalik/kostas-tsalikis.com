@@ -38,6 +38,8 @@
                 {{ partial "share.html" . }}
             {{ end }}
 
+            {{ partial "post-comments.html" . }}
+
             {{ if .Site.Params.showLatestPosts }}
                 {{ partial "latest-posts.html" . }}
             {{ end }}
