@@ -1,0 +1,58 @@
+<section class="post-comments">
+  <h3>Comments</h3>
+
+  {{ $comments := readDir "data/comments" }}
+  {{ $.Scratch.Add "hasComments" 0 }}
+  {{ $entryId := .UniqueID }}
+
+  {{ range $comments }}
+    {{ if eq .Name $entryId }}
+      {{ $.Scratch.Add "hasComments" 1 }}
+      {{ range $index, $comments := (index $.Site.Data.comments $entryId ) }}
+        <div class="chip">
+            <img src="https://www.gravatar.com/avatar/{{ .email }}?s=100&d=retro">
+            <p class="post-comment-info"><strong>{{ .name }}</strong> - {{ dateFormat "02/01/2006" .date }}</p>
+        </div>
+        <div class="post-comment-body">
+          {{ .body | markdownify }}
+        </div>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ if eq ($.Scratch.Get "hasComments") 0 }}
+    <p>Nothing yet.</p>
+  {{ end }}
+
+  <hr>
+  <h3>Leave your thoughts</h3>
+
+  <form class="post-new-comment" method="POST" action="https://api.staticman.net/v2/entry/tsalik/kostas-tsalikis.com/staticman/comments">
+    <input type="hidden" name="options[redirect]" value="https://www.youtube.com/">
+    <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
+    <input type="hidden" name="options[redirectError]" value="https://www.youtube.com/">
+    <input name="fields[name]" type="text" class="post-comment-field" placeholder="Your name">
+    <input name="fields[email]" type="email" class="post-comment-field" placeholder="Your email address">
+    <textarea name="fields[body]" class="post-comment-field" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input type="submit" class="post-comment-field btn" value="Submit">
+  </form>
+</section>
+
+<p>
+  {{ .Permalink }}
+  {{ .URL }}
+</p>
+
+<div id="comment-submitted" class="dialog">
+<h3>Thank you</h3>
+  <p>Your comment has been submitted and will be published once it has been approved.</p>
+  <p><a href="https://github.com/tsalik/kostas-tsalikis.com/pulls">Click here</a> to see the pull request you generated.</p>
+
+  <p><a href="#" class="btn">OK</a></p>
+</div>
+
+<div id="post-error" class="dialog">
+    <h3>OOPS!</h3>
+    <p>Your post has not been submitted.  Please return to the page and try again.  Thank You!</p>
+    <p><a href="#" class="btn">OK</a></p>
+</div>
