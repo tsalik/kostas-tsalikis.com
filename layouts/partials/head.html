@@ -11,15 +11,15 @@
 		{{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
 		{{ .Hugo.Generator }}
 		<title>{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
-		<link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.ico">
-		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
-		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/highlight.css">
+		<link rel="shortcut icon" href="{{ "images/favicon.ico" | relURL }}">
+		<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+		<link rel="stylesheet" href="{{ "css/highlight.css" | relURL }}">
 		<link rel="stylesheet" href="{{ "css/comments.css" | relURL }}">
 
 		{{ if eq .Site.Params.iconFont "font-awesome" }}
-		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ "css/font-awesome.min.css" | relURL }}">
 		{{ else }}
-		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/monosocialiconsfont.css">
+		<link rel="stylesheet" href="{{ "css/monosocialiconsfont.css" | relURL }}">
 		{{ end }}
 
 		{{ if .Site.Params.enableRSS }}
