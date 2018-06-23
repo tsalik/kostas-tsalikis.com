@@ -28,20 +28,15 @@
   <h3>Leave your thoughts</h3>
 
   <form class="post-new-comment" method="POST" action="https://api.staticman.net/v2/entry/tsalik/kostas-tsalikis.com/staticman/comments">
-    <input type="hidden" name="options[redirect]" value="https://www.youtube.com/">
+    <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
     <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
-    <input type="hidden" name="options[redirectError]" value="https://www.youtube.com/">
+    <input type="hidden" name="options[redirectError]" value="{{ .Permalink }}#comment-submitted">
     <input name="fields[name]" type="text" class="post-comment-field" placeholder="Your name">
     <input name="fields[email]" type="email" class="post-comment-field" placeholder="Your email address">
     <textarea name="fields[body]" class="post-comment-field" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
     <input type="submit" class="post-comment-field btn" value="Submit">
   </form>
 </section>
-
-<p>
-  {{ .Permalink }}
-  {{ .URL }}
-</p>
 
 <div id="comment-submitted" class="dialog">
 <h3>Thank you</h3>
