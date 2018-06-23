@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://www.droidship.com/"
 languageCode = "en-us"
 title = "Kostas Tsalikis"
 theme = "hugo-theme-cactus-plus"
