@@ -14,7 +14,7 @@
 		<link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.ico">
 		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css">
 		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/highlight.css">
-		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/comments.css">
+		<link rel="stylesheet" href="{{ "css/comments.css" | relURL }}">
 
 		{{ if eq .Site.Params.iconFont "font-awesome" }}
 		<link rel="stylesheet" href="{{ .Site.BaseURL }}css/font-awesome.min.css">
