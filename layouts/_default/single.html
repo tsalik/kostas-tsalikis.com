@@ -38,7 +38,9 @@
                 {{ partial "share.html" . }}
             {{ end }}
 
-            {{ partial "post-comments.html" . }}
+            {{ if eq (getenv "HUGO_ENV") "production" }}
+              {{ partial "post-comments.html" . }}
+            {{ end }}
 
             {{ if .Site.Params.showLatestPosts }}
                 {{ partial "latest-posts.html" . }}

@@ -10,11 +10,11 @@
       {{ $.Scratch.Add "hasComments" 1 }}
       {{ range $index, $comments := (index $.Site.Data.comments $entryId ) }}
         <div class="chip">
-            <img src="https://www.gravatar.com/avatar/{{ .email }}?s=100&d=retro">
-            <p class="post-comment-info"><strong>{{ .name }}</strong> - {{ dateFormat "02/01/2006" .date }}</p>
+            <img src="https://www.gravatar.com/avatar/{{ .email | plainify }}?s=100&d=retro">
+            <p class="post-comment-info"><strong>{{ .name | plainify }}</strong> - {{ dateFormat "02/01/2006" .date }}</p>
         </div>
         <div class="post-comment-body">
-          {{ .body | markdownify }}
+          {{ .body | plainify | markdownify }}
         </div>
       {{ end }}
     {{ end }}
