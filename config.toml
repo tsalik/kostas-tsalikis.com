@@ -5,6 +5,7 @@ theme = "hugo-theme-cactus-plus"
 googleAnalytics = "UA-112509011-1"
 pygmentsUseClasses=true
 pygmentsCodefences=true
+enableEmoji = true
 
 [privacy]
   [privacy.disqus]
