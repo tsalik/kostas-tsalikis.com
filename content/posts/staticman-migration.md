@@ -12,7 +12,7 @@ For quite a while I had a dry run without any ideas for posts. Since I have no i
 
 Some drawbacks of using Disqus is that it is not open source, it lacks support of Markdown and also uses cookies. One big advantage of using it is that just by creating a Disqus short name and declaring it in the config.toml of my Hugo site, I instantly have a way to add comments to my blog. That was great for quickly starting this blog, but its drawbacks are too great for me to continue supporting it.
 
-So off to the internets, I went to search for some alternatives that should be open source and support Markdown, ideally with as much less configuration as needed. Upon stumbling at [this](https://notes.peter-baumgartner.net/2017/09/14/alternatives-for-disqus/) post, I decided to give Staticman a try.
+So off to the internet, I went to search for some alternatives that should be open source and support Markdown, ideally with as much less configuration as needed. Upon stumbling at [this](https://notes.peter-baumgartner.net/2017/09/14/alternatives-for-disqus/) post, I decided to give Staticman a try.
 
 # Choosing Staticman
 
@@ -24,15 +24,15 @@ What's more, Staticman can be configured to provide reply functionality for comm
 
 # Configuring Staticman
 
-Setting up your Hugo blog with Staticman is relatively easy, just by following the (documentation)[https://staticman.net/docs/]. After that, you must register your git repo and the appropriate git branch in the Staticman API. In order to do this just open your favorite browser and enter the following:
+Setting up your Hugo blog with Staticman is relatively easy, just by following the [documentation](https://staticman.net/docs/). After that, you must register your git repo and the appropriate git branch in the Staticman API. In order to do this just open your favorite browser and enter the following:
 
 ```
 https://api.staticman.net/v2/connect/{your GitHub username}/{your repository name}
 ```
 
-If an *"OK"* message shows up, congratulations, you just registered your blog with Staticman. Unfortunately, your are not yet ready to give your readers the chance to comment your posts.
+If an *"OK"* message shows up, congratulations, you just registered your blog with Staticman. Unfortunately, you are not yet ready to give your readers the chance to comment your posts.
 
-Finally, you must provide an appropriate ***staticman.yml*** configuration file which Staticman parses and provide as well the required HTML form which will post the comments to the API and show the comments of the post. A staticman.yml sample can be found [here](https://github.com/eduardoboucas/hugo-plus-staticman/blob/master/staticman.yml).
+Finally, you must provide an appropriate ***staticman.yml*** configuration file, which Staticman parses, along with the required HTML form that posts the comments to the API and presents the comments of the post. A staticman.yml sample can be found [here](https://github.com/eduardoboucas/hugo-plus-staticman/blob/master/staticman.yml).
 
 A sample form is shown below:
 
@@ -48,7 +48,7 @@ A sample form is shown below:
 </form>
 ```
 
-Your comments will be saved in a comments folder, below the data folder of Hugo. You can then create a partial which traverses the comments folder and renders the comments(which can be configured to be saved as json files as well).
+Your comments will be saved in a comments folder, below the data folder of Hugo. You can then create a Hugo *partial* which traverses the comments folder and renders the comments(which can be configured to be saved as json files as well).
 
 # Pitfalls to avoid
 
@@ -61,7 +61,7 @@ So, all in all, add a *.keep* file in /data/comments and add the *staticman.yml*
 # Some drawbacks
 As far as I know, Staticman can be used only with GitHub, since it works as a GitHub bot. Obviously, not all static sites are saved in GitHub, and this may be a showstopper for someone using another service. What's more, at the time of the post's writing, GitHub was acquired by Microsoft, and a lot of people have expressed their concerns on the fact, so not everyone will be willing to migrate to GitHub just in order to add comments with Staticman.
 
-Another drawback is the migration of already written comments from whatever service were saved, and exporting them to the Staticman format. This is not exactly a drawback of Staticman, but more likely an obstacle that anyone would have to face when migrating from a commenting system to another. I do not know if there exists any automated way to do this.
+Another drawback is the migration of already written comments from whatever service were saved, and exporting them to the Staticman format. This is not exactly a drawback of Staticman, but more likely an obstacle that everyone would have to face when migrating from a commenting system to another. I do not know if there exists any automated way to do this.
 
 Fortunately, I did not have to face those drawbacks, as this blog already uses GitHub(with no intention of moving away), and it is not popular enough yet to have comments to migrate to Staticman :stuck_out_tongue:.
 
