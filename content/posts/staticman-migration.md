@@ -1,7 +1,6 @@
 ---
 title: "Hugo comments with Staticman"
-date: 2018-06-24T01:10:19+03:00
-draft: true
+date: 2018-07-05T01:10:19+03:00
 tags: [Hugo]
 description: "Moving away from Disqus and using Staticman as a commenting system with Hugo."
 ---
