@@ -6,6 +6,7 @@ googleAnalytics = "UA-112509011-1"
 pygmentsUseClasses=true
 pygmentsCodefences=true
 enableEmoji = true
+Paginate = 5
 
 [privacy]
   [privacy.disqus]
