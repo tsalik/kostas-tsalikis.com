@@ -42,9 +42,9 @@ Paginate = 5
   iconFont = "font-awesome"
 
   enableShare = true
+  enableRSS = true
 
 [social]
-	facebook-square = "https://www.facebook.com/kostas.tsalikis.54"
 	twitter-square = "https://twitter.com/tsalikispk"
 	github-square = "https://github.com/tsalik"
   linkedin-square = "https://www.linkedin.com/in/kostas-tsalikis-400002126/"
