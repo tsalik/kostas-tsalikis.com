@@ -202,6 +202,9 @@ nav.main-nav a.cta {
       margin: 0 auto;
       text-align: right;
       z-index: 100;
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
   }
   nav.main-nav a {
       top: 8px;
@@ -1014,7 +1017,16 @@ a.symbol:hover {
   margin: auto;
 }
 
+.caption-responsive-image {
+  width: auto;
+  margin: auto;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
 .image-caption-text {
   text-align: center;
   font-style: italic;
+  margin-top: 1em;
 }
