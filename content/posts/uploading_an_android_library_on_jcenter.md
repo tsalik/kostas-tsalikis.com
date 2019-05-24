@@ -2,22 +2,21 @@
 title: "Uploading an Android library on JCenter"
 date: 2019-05-21T22:47:02+03:00
 tags: [android]
-description: "A small overview on how publishing an Android open-source library on a public maven repository works"
+description: "A small overview on how to publish an Android open-source library on a public maven repository"
 ---
 
-Facing a lack of inspiration for quite a time I decided to draw some from an old project of mine. A couple of years ago I created an open-source library named [`target-layout`](https://github.com/tsalik/target-layout) which was basically a `FrameLayout` that draws a view on its center and some `drawables` around it, letting the user to pinch zoom on the view and select through a range of levels.
+Facing a lack of inspiration for quite some time I decided to draw some from an old project of mine. A couple of years ago I created an open-source library named [`target-layout`](https://github.com/tsalik/target-layout) which was basically a `FrameLayout` that draws a view on its center and some `drawables` around it, letting the user pinch zoom on the view and select through a range of levels.
 
 {{< caption image="/gifs/targetlayout.gif" alt="TargetLayout animation" caption=" Of course a GIF might be the best way to showcase what the library does." >}}
 
 
-Apart from the joy of creating a custom and unique UI and delving in to the depths of how a view measures, layouts and draws I decided to learn how to publish the library on JCenter. Unfortunately, I haven't been the best maintainer on the world and left the library targeting old Android SDK versions, without any support for AndroidX. What's more, I had left the project without Continuous Integration(CI from now on) and as the years passed forgot how publishing on JCenter works, so I decided
-to revisit these topics before doing any further work with the library itself.
+Apart from the joy of creating a custom and unique UI and delving into the depths of how a view is measured, laid-out and drawn I decided to learn how to publish the library on JCenter. Unfortunately, I haven't been the world’s best maintainer, so I left the library targeting old Android SDK versions, without any support for AndroidX. What's more, I had left the project without Continuous Integration (CI from now on) and as the years passed, I forgot how publishing on JCenter works, so I decided to revisit these topics before doing any further work with the library itself.
 
 # Adding CI on your open-source library
 
-The first think to do was to update all its outdated dependencies. This meant updating gradle versions along with target and compile Android SDK versions so a new user of the library would be able to compile it with no problems and warnings. Even though I am the maintainer and could push directly to the master branch, I decided to go for a pull request process with myself. Doing so meant that I would emulate the process of someone else trying to use and modify the library, so I needed to add some checks from an external CI server in order to verify that the library actually builds.
+The first think I had to do was updating all its outdated dependencies. This meant updating gradle versions along with target and compile Android SDK versions so any new users of the library would be able to compile it with no problems and warnings. Even though I am the maintainer and could push directly to the master branch, I decided to go for a pull request process with myself. Doing so meant that I would emulate the process of someone else trying to use and modify the library, so I needed to add some checks from an external CI server in order to verify that the library actually builds.
 
-Among the most usual CI services that support open-source projects and are Android friendly are [CircleCI](https://circleci.com/) and [TravisCI](https://travis-ci.org/). As I had some previous experience with TravisCI on a toy project, I decided to use TravisCI in order to kick-start the process of making the library more modern. In order to start using TravisCI, first of all it is needed to create an account or sign in with your GitHub account. After doing so, we can add from the dashboard a git repository and then add a `.travis.yml` file on the root of the repo. The `.travis.yml` is essential as it instructs TravisCI on how to build the project - if TravisCI does not find the `.travis.yml` on the root of the repo it will be unable to build. Below you can find a sample `.travis.yml` for building an Android project:
+Among the most usual CI services that support open-source projects and are Android friendly are [CircleCI](https://circleci.com/) and [TravisCI](https://travis-ci.org/). As I had some previous experience with TravisCI on a toy project, I decided to use TravisCI in order to kick-start the process of making the library modernized. In order to start using TravisCI. First of all, it is needed to create an account or sign in with your GitHub account. After doing so, we can add from the dashboard a git repository and then add a `.travis.yml` file on the root of the repo. The `.travis.yml` is essential as it instructs TravisCI on how to build the project - if TravisCI does not find the `.travis.yml` on the root of the repo it will be unable to build. Below you can find a sample `.travis.yml` for building an Android project:
 
 ```yml
 language: android
@@ -64,8 +63,8 @@ script:
 
 ## Explaining the .travis.yml
 
-The yml above instructs the CI service to clear the caches before building and exports as environment variables the desired Android API and build tools versions. We then declare which components we will use, along with their licenses. This is something that in our daily work life do through Android Studio manually but since we are building on a CI server, we need to do this programmatically. By declaring them this way on the `.travis.yml` we are instructing TravisCI to download the desired components and accept any of
-the licences needed. As there are some problems with accepting the licenses, we additionally instruct to accept the licenses through the `sdkmanager` tool and finally make the `gradlew` file executable in order to let TravisCI execute the gradle scripts for building the project. Finally the `script` section is where the build actually happens. Since we our only interested on building the library module and not the sample that accompanies it, we only clean and build the library module(on the script
+The yml above instructs the CI service to clear the caches before building and exports as environment variables the desired Android API and build tools versions. We then declare which components we will use, along with their licenses. This is something that, in our daily work life, do through Android Studio manually but since we are building on a CI server, we need to do this programmatically. By declaring them this way on the `.travis.yml` we are instructing TravisCI to download the desired components and accept any of
+the licenses needed. As there are some problems with accepting the licenses, we additionally instruct to accept the licenses through the `sdkmanager` tool and finally make the `gradlew` file executable in order to let TravisCI execute the gradle scripts for building the project. Finally the `script` section is where the build actually happens. Since we are only interested in building the library module and not the sample that accompanies it, we only clean and build the library module(on the script
 with a name exampled as library_module_name)
 
 ## Some pain points
@@ -89,7 +88,7 @@ android {
 
 # Updating gradle versions and moving on AndroidX
 
-At this point we have a build that passes through TravisCI and we are ready to update gradle and Android SDK versions. Fortunately this is done easily through Android Studio since it already gives warnings on the library's `build.gradle` file. Just entering `Alt+Enter` on the respective versions updates them automatically and the migration tool for AndroidX works fine as the project does not have any dependencies apart from the Android `appcompat` library - so I didn't have to deal with any of the [problems of the AndroidX migration](/posts/androidx). Now we are ready to create the pull request, see it pass the TravisCI build and safely accept it. What's more we can add the TravisCI build badge in our `README.md` to showcase that the build is passing.
+At this point we have a build that passes through TravisCI and we are ready to update gradle and Android SDK versions. Fortunately this is done easily through Android Studio since it already gives warnings on the library's `build.gradle` file. Just hitting `Alt+Enter` on the respective versions, updates them automatically and the migration tool for AndroidX works fine as the project does not have any dependencies apart from the Android `appcompat` library - so I didn't have to deal with any of the [problems of the AndroidX migration](/posts/androidx). Now we are ready to create the pull request, see it pass the TravisCI build and safely accept it. What's more we can add the TravisCI build badge in our `README.md` to showcase that the build is passing.
 
 # Uploading on JCenter
 
@@ -97,7 +96,7 @@ Now that the build passes, we are finally ready to upload the library's artifact
 
 ## The maven repository
 
-In order for our library to be traceable and downloadable we need to upload it on a maven repository. A very good and thorough explanation of what a maven repository is and how it works can be found [here](https://blog.packagecloud.io/eng/2017/03/09/how-does-a-maven-repository-work/#what-is-a-maven-dependency). In a few words, a maven repository is a directory where all the library's executable files are stored and are available to download. The path of the directory is
+For our library to be traceable and downloadable we need to upload it on a maven repository. A very good and thorough explanation of what a maven repository is and how it works can be found [here](https://blog.packagecloud.io/eng/2017/03/09/how-does-a-maven-repository-work/#what-is-a-maven-dependency). In a few words, a maven repository is a directory where all the library's executable files are stored and are available to download. The path of the directory is
 determined by the library's `.pom` file, which essentially gives the library its name as well and adds any transitive dependencies that it has. The `.pom` file for the `target-layout` library that serves as an example for this post is the following:
 
 ```xml
@@ -119,7 +118,7 @@ determined by the library's `.pom` file, which essentially gives the library its
 </project>
 ```
 
-The above means that whoever would like to fetch the library from a maven repository with gradle from example would have to add on the dependencies of their `build.gradle` file the following:
+The above means, would anyone like to fetch the library from a maven repository with gradle, they have to add in the dependencies of their `build.gradle` file the following line:
 
 ```gradle
 implementation "com.tsalik.targetlayout:targetlayout:1.0.2"
@@ -127,13 +126,12 @@ implementation "com.tsalik.targetlayout:targetlayout:1.0.2"
 
 Since this is an Android library, it is declared that an `.aar`(named targetlayout-1.0.2.aar more specifically) file should be downloaded, along with the dependencies of the library, which is the `androidx.appcompat:appcompat:1.0.2`. 
 
-Now we know that we need to produce the `.aar` from the code of the library and add it along with a `.pom` file and any extra resources or javadoc on a maven repository, so next steps should be about building the library and adding any of the
-artifacts above on a specific maven repository(in our case we want to eventually uploaded on the JCenter repository)
+Now we know that we need to produce the `.aar` from the code of the library and add it along with a `.pom` file, including any extra resources or javadoc on a maven repository, so next steps should be about building the library and adding any of the
+artifacts above on a specific maven repository (in our case we want to eventually upload it on the JCenter repository)
 
 ## Let's build and publish locally
 
-First of all we need to create the artifacts mentioned above on a local repository. To do this we need to know how to publish a maven repository through gradle, which is the de facto tool for building on Android(although alternatives like [Bazel](https://bazel.build/) and [Buck](https://buck.build/) do exist). An extensive documentation on how maven publishing works can be found [here](https://docs.gradle.org/current/userguide/publishing_maven.html)(at the time of
-writing for the 5.4.1 version of gradle). Although the official gradle documentation describes how publishing works the [bintray plugin documentation](https://github.com/bintray/gradle-bintray-plugin)(version 1.8.4 at the time of writing) is more specific on how to publish specifically for Android and avoid common pitfalls.
+First of all, we need to create the artifacts mentioned above on a local repository. To do this we need to know how to publish a maven repository through gradle, which is the de facto tool for building on Android (although alternatives like [Bazel](https://bazel.build/) and [Buck](https://buck.build/) do exist). An extensive documentation on how maven publishing works can be found [here] (https://docs.gradle.org/current/userguide/publishing_maven.html)(at the time of writing for the 5.4.1 version of gradle). Although the official gradle documentation describes how publishing works the [bintray plugin documentation] (https://github.com/bintray/gradle-bintray-plugin)(version 1.8.4 at the time of writing) is more specific on how to publish specifically in Android and avoid common pitfalls.
 
 Below you can find the example gradle script for publishing the `target-layout` library:
 
@@ -217,15 +215,14 @@ project.afterEvaluate {
 }
 ```
 
-Although it seems daunting, let's try to dissect it. First of all we declare our own tasks for generating Javadoc and Android resources on their respective jars. The `publishing` and `publication` closures are from the `maven-publish` plugin, which we must apply on top of the script. Inside the `publication` closure we declare a maven publication named `targetlayout` - named after the library(for your own library you must apply an appropriate
-name). 
+Although it seems daunting, let's try to dissect it. First of all, we declare our own tasks for generating Javadoc and Android resources on their respective jars. The `publishing` and `publication` closures are from the `maven-publish` plugin, which we must apply on top of the script. Inside the `publication` closure we declare a maven publication named `targetlayout` - named after the library (for your own library you must apply an appropriate name). 
 
-Continuing inside the `publication` closure, we apply the `groupdId`, `artifactId` and `version` in order to name the library appropriately. The values on the example above are set as project extra properties on the `build.gradle` file of the library's module so we can reference them in one single point. Then we declare which artifacts(i.e. files) we need the publication to have. We want the `.aar` for the release build, as well as the Javadoc and any extra resources as
-jars(we do so by calling the tasks we declared above).
+Continuing inside the `publication` closure, we apply the `groupdId`, `artifactId` and `version` in order to name the library appropriately. The values on the example above are set as extra project properties on the `build.gradle` file of the library's module so that we can reference them in one single point. Then we declare which artifacts (i.e. files) we need the publication to have. We want the `.aar` for the release build, as well as the Javadoc and any extra resources as
+jars (we do so by calling the tasks we declared above).
 
-Finally we manually add all the dependencies of the library for `compile`, `api` and `implementation` configurations, as otherwise it will not be done automatically(the bintray-gradle-plugin explains nicely why).
+Finally, we manually add all the dependencies of the library for `compile`, `api` and `implementation` configurations, as otherwise it will not be done automatically (the bintray-gradle-plugin explains nicely why).
 
-In order to check if all this configuration for the publication works, we can add the `repositories` closure and publish on a local directory(in this case a directory named repo under the library module's build folder). Now in order to test that everything is fine we can execute:
+In order to check if all this configuration for the publication works, we can add the `repositories` closure and publish on a local directory (in this case a directory named repo under the library module's build folder). Now in order to test that everything is fine we can execute:
 
 ```shell
 ./gradlew clean :targetlayout:publish
@@ -235,8 +232,8 @@ and we should be able to check that all the artifacts(aar, javadoc, pom files) h
 
 ## So where should we upload then?
 
-Now that we have seen how a publication works and what files does it contain we are ready to finally upload the library on a maven repository other than the local one that we created. Among the various public maven repositories that exist, the more popular for Android development are Maven Central, JCenter and JitPack. A comparison between them is out of the scope of the post and since I already had uploaded the library on JCenter, we will focus only on uploading there. Fortunately,
-there already exists a gradle plugin for uploading on JCenter so there will be no need to invent the wheel. 
+Now that we have seen how a publication works and what files it contains, we are ready to finally upload the library on a maven repository other than the local one that we created. Among the various public maven repositories that exist, the more popular ones for Android development are Maven Central, JCenter and JitPack. A comparison between them is out of the scope of this post and since I had already uploaded the library on JCenter, we will focus only on uploading there. Fortunately,
+there already exists a gradle plugin for uploading on JCenter so there will be no need to re-invent the wheel. 
 
 In order to install the bintray gradle plugin, we apply the `classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'` on the dependencies of the top `build.gradle` of the project and then apply it on the same script declared above(which is responsible for publishing).
 
@@ -276,9 +273,9 @@ project.afterEvaluate {
 }
 ```
 
-There are a couple of thing to notice here. First of all, we must have already singed in JCenter and created a maven repository. I will leave this out of the scope of the post and provide references on how to do it. You can check that the repository and the name of the library have the same name - `target-layout`. This is not something mandatory, it just happened at the time I was creating the repository.
+There are a couple of things to notice here. First of all, we must have already been singed in JCenter and created a maven repository. I will leave this part out and provide references on how to do it. You can check that the repository and the name of the library have the same name - `target-layout`. This is not something mandatory, it just happened at the time I was creating the repository.
 
-In order to be able to upload the artifact of the publishing, we must somehow authorize ourselves with bintray. The `user` and `key` fields just do that - but be aware. We **MUST NOT** add these values on version control as everyone could check these values and upload anything they want on your maven repository. We can add them as environment variables if we publish and upload through the CI server, or add them on `local.properties`(which **MUST** be on the `.gitignore`). 
+In order to be able to upload the artifact of the publishing, we must somehow authorize ourselves with bintray. The `user` and `key` fields just do that - but be aware. We **MUST NOT** add these values on version control as everyone could check these values and upload anything, they want on your maven repository. We can add them as environment variables if we publish and upload through the CI server, or add them on `local.properties`(which **MUST** be on the `.gitignore`). 
 
 If you decide to inject them through the `local.properties`, make sure that you check that the file exists - in a CI server it will not and the build will fail.
 
@@ -292,10 +289,10 @@ Finally, after adding any required metadata, we declare which publications we wa
 
 # Final thoughts
 
-Ultimately revisiting how to add CI on an open-source project and automating the publish project proved to be a good exercise. Apart from the frustration of some(actually a lot) broken builds due to misconfigurations on the `travis.yml` for setting up CI it was an overall enjoyable ride. Having to deal with how a publication actually works clarified a lot of things on how maven works and highlighted that creating a publication with its artifacts and uploading it on a public maven repo
+Ultimately revisiting how to add CI on an open-source project and automating its publishing process proved to be a good exercise. Apart from the frustration of some (a lot) broken builds due to misconfigurations on the `travis.yml` for setting up CI it was an overall enjoyable ride. Having to deal with how a publication works, clarified a lot of things on how maven works and highlighted that creating a publication with its artifacts and uploading it on a public maven repo
 are actually two different and partially unrelated things.
 
-Just publishing locally would be enough as I would be able to manually upload the artifacts as I did in the past, but this time instead of being dependent on someone else's ready-made solution, I decided to actually check out how to do this without the help of a third-party plugin. After all the less the plugins the less the pain of building a library or app. The bintray plugin was indeed invaluable as it made easy the upload part of publishing the library.
+Just publishing locally would have been enough as I would be able to manually upload the artifacts as I did in the past, but this time instead of being dependent on someone else's ready-made solution, I decided to actually check out how to do this without the help of a third-party plugin. After all, the lesser the plugins the lesser the pain of building a library or app. The bintray plugin was indeed invaluable as it made easy the upload part of publishing the library.
 
 # Next Steps
 
@@ -305,6 +302,6 @@ Now that the library is updated with the latest gradle and Android SDK versions 
 
 Although there are a lot of posts that cover the publication that have far more detail on how to setup your TravisCI account and how to create an account and the repository on [JCenter](https://bintray.com/bintray/jcenter) I decided to cover more in depth on how a publication works on a maven repository.
 
-What's more, most of the posts used other gradle plugins for the publishing part on top of gradle's `maven-plugin` and since the scope of the exercise was to actually check how it works with minimal dependencies, I decided to depend only on what's vanilla on gradle.
+What's more, most of the posts used other gradle plugins for the publishing part on top of gradle's `maven-plugin` and since the scope of the exercise was to check how it works with minimal dependencies, I decided to depend only on what's vanilla on gradle.
 
-This post from [Anitaa Murthy](https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890), this from [Yegor Zatsepin](https://medium.com/@yegor_zatsepin/simple-way-to-publish-your-android-library-to-jcenter-d1e145bacf13) and this from [Wajahat Karim](https://android.jlelse.eu/publishing-your-android-kotlin-or-java-library-to-jcenter-from-android-studio-1b24977fe450) acted as guides for this one, with excellent replication steps on how to set up the repository on JCenter.
+The posts from [Anitaa Murthy](https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890), this from [Yegor Zatsepin](https://medium.com/@yegor_zatsepin/simple-way-to-publish-your-android-library-to-jcenter-d1e145bacf13) and this from [Wajahat Karim](https://android.jlelse.eu/publishing-your-android-kotlin-or-java-library-to-jcenter-from-android-studio-1b24977fe450) acted as guides for this one, with excellent replication steps on how to set up the repository on JCenter.
