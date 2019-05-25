@@ -118,7 +118,7 @@ determined by the library's `.pom` file, which essentially gives the library its
 </project>
 ```
 
-The above means, would anyone like to fetch the library from a maven repository with gradle, they have to add in the dependencies of their `build.gradle` file the following line:
+The above means, would anyone like to fetch the library from a maven repository with gradle, they would have to add in the dependencies of their `build.gradle` file the following line:
 
 ```gradle
 implementation "com.tsalik.targetlayout:targetlayout:1.0.2"
@@ -131,7 +131,7 @@ artifacts above on a specific maven repository (in our case we want to eventuall
 
 ## Let's build and publish locally
 
-First of all, we need to create the artifacts mentioned above on a local repository. To do this we need to know how to publish a maven repository through gradle, which is the de facto tool for building on Android (although alternatives like [Bazel](https://bazel.build/) and [Buck](https://buck.build/) do exist). An extensive documentation on how maven publishing works can be found [here] (https://docs.gradle.org/current/userguide/publishing_maven.html)(at the time of writing for the 5.4.1 version of gradle). Although the official gradle documentation describes how publishing works the [bintray plugin documentation] (https://github.com/bintray/gradle-bintray-plugin)(version 1.8.4 at the time of writing) is more specific on how to publish specifically in Android and avoid common pitfalls.
+First of all, we need to create the artifacts mentioned above on a local repository. To do this we need to know how to publish a maven repository through gradle, which is the de facto tool for building on Android (although alternatives like [Bazel](https://bazel.build/) and [Buck](https://buck.build/) do exist). An extensive documentation on how maven publishing works can be found [here](https://docs.gradle.org/current/userguide/publishing_maven.html)(at the time of writing for the 5.4.1 version of gradle). Although the official gradle documentation describes how publishing works the [bintray plugin documentation](https://github.com/bintray/gradle-bintray-plugin)(version 1.8.4 at the time of writing) is more specific on how to publish specifically in Android and avoid common pitfalls.
 
 Below you can find the example gradle script for publishing the `target-layout` library:
 
@@ -304,4 +304,6 @@ Although there are a lot of posts that cover the publication that have far more 
 
 What's more, most of the posts used other gradle plugins for the publishing part on top of gradle's `maven-plugin` and since the scope of the exercise was to check how it works with minimal dependencies, I decided to depend only on what's vanilla on gradle.
 
-The posts from [Anitaa Murthy](https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890), this from [Yegor Zatsepin](https://medium.com/@yegor_zatsepin/simple-way-to-publish-your-android-library-to-jcenter-d1e145bacf13) and this from [Wajahat Karim](https://android.jlelse.eu/publishing-your-android-kotlin-or-java-library-to-jcenter-from-android-studio-1b24977fe450) acted as guides for this one, with excellent replication steps on how to set up the repository on JCenter.
+The posts from [Anitaa Murthy](https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890), [Yegor Zatsepin](https://medium.com/@yegor_zatsepin/simple-way-to-publish-your-android-library-to-jcenter-d1e145bacf13) and [Wajahat Karim](https://android.jlelse.eu/publishing-your-android-kotlin-or-java-library-to-jcenter-from-android-studio-1b24977fe450) acted as guides for this one, with excellent replication steps on how to set up the repository on JCenter.
+
+*Special thanks to Michalis Kolozoff for proofreading*
