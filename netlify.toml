@@ -6,7 +6,7 @@
   command = "hugo --buildDrafts --buildFuture"
 
 [context.production.environment]
-  HUGO_VERSION = "0.41"
+  HUGO_VERSION = "0.55.6"
   HUGO_ENV = "production"
 
 [context.deploy-preview.environment]

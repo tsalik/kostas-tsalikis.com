@@ -25,6 +25,7 @@ Paginate = 5
     disable = false
     enableDNT = true
     simple = true
+    disableInlineCSS = true
   [privacy.vimeo]
     disable = false
   [privacy.youtube]
