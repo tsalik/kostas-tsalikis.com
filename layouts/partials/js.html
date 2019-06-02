@@ -5,8 +5,3 @@
 <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
 {{ end }}
 
-{{ if eq (getenv "HUGO_ENV") "production" }}
-  {{ if .Site.Params.enableGoogleAnalytics }}
-    {{ template "_internal/google_analytics.html" . }}
-  {{ end }}
-{{ end }}
