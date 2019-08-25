@@ -1,8 +1,9 @@
 ---
-title: "Stubbing external services in Espresso tests - Part 1"
+title: "Stubbing external services in Espresso tests - Part 1: Bring the code in the right shape"
 date: 2019-07-24T01:11:47+03:00
 draft: true
 tags: ["android", "testing", "refactoring"]
+description: "In this post we will explore why we would need to add UI tests with Espresso and how to shape the code in order to write the very first test"
 ---
 
 ### TL;DR
@@ -67,7 +68,7 @@ class RecipeDetailsActivity : AppCompatActivity(), NetworkCallback<Recipe> {
 
 We can already see that it does too much. It unpacks the intent for the specific recipe's details and fetches the details from a data source. The unpacking of the intent is well within the `Activity`'s responsibilities, but creating and holding a reference to the actual data source and doing the actual error handling seems too excessive.
 
-In fact, the data source in this example is a Kotlin `object` singleton which, as we will see later, it will bite us back on our try to add some tests. 
+In fact, the data source in this example is a Kotlin `object` singleton which,as we will see later, it will bite us back on our try to add some tests. 
 
 ## Espresso to the rescue.
 
