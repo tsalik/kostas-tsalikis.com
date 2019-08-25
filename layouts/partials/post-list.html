@@ -3,7 +3,7 @@
     {{ $url := replace .Permalink .Site.BaseURL "" }}
         {{ if ne $url "about/" }}
             <li>
-                <a href='{{ .URL }}'>
+                <a href='{{ .Permalink }}'>
                   <aside class="dates">{{ .Date.Format "Jan 2 2006" }}</aside>
                     {{ .Title }}
                     {{ if .Site.Params.enableSummary }}
