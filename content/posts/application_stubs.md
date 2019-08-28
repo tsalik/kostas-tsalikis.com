@@ -1,7 +1,7 @@
 ---
 title: "Stubbing external services in Espresso tests - Part 1: Bring the code in the right shape"
 date: 2019-07-24T01:11:47+03:00
-draft: true
+publishDate: 2019-08-29T01:11:47+03:00
 tags: ["android", "testing", "refactoring"]
 description: "In this post we will explore why we would need to add UI tests with Espresso and how to shape the code in order to write the very first test"
 ---
