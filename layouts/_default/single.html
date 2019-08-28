@@ -9,7 +9,7 @@
                         {{ .Title }}
                     </h1>
                     <h2 class="headline">
-                    {{ .Date.Format "Jan 2, 2006" }}
+                    {{ .PublishDate.Format "Jan 2, 2006" }}
                     · {{ .ReadingTime }} minute read
                       <span class="tags">
                       {{ with .Params.tags }}
