@@ -7,7 +7,7 @@ tags: ["testing", "continuous integration"]
 
 {{< figure src="/images/posts/broken_builds/judge-dredd-under-arrest.jpg" title="" >}}
 
-Nowadays it has become quite a common practice to build and check software on machines other than local workstations, most of the time called CI servers(CI stands for [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html)). This can be done manually or automatically, usually triggered by a pull/merge request or a direct push on the main trunk(in git terminology most of the times named *master*).
+Nowadays, it has become quite a common practice to build and check software on machines other than local workstations, most of the time called CI servers(CI stands for [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html)). This can be done either manually or automatically, usually triggered by a pull/merge request or a direct push on the main trunk (in git terminology most of the times named *master*).
 
 The point is that there's a single point where binaries are packaged and code is checked for quality and correctness, so we can merge changes safely and with confidence. 
 
