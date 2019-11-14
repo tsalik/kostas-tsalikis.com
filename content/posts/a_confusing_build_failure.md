@@ -11,7 +11,7 @@ Nowadays, it has become quite a common practice to build and check software on m
 
 The point is that there's a single place where binaries are packaged and code is checked for quality and correctness, so we can merge changes safely and with confidence. 
 
-When a failure appears in a build it should be investigated why did it happen. Did a commit actually break functionality/introduce a bug? Was static code analysis checks too harsh and maybe they must be relaxed a little bit? One of the failures that left me most perplexed was a build that was failing on the CI server unit tests but passed locally! How did this happen? Investigating on this confusing build failure unearthed bigger problems than just a breaking unit
+When a failure appears in a build it should be investigated why did it happen. Did a commit actually break functionality? Were static code analysis checks too harsh and maybe they must be relaxed a little bit? Recently, one of the failures that left me most perplexed was a build where the unit tests failed on the CI server unit tests but passed locally! How did this happen? Investigating on this confusing build failure unearthed bigger problems than just a breaking unit
 test.
 
 ## Mockito cannot mock final classes
@@ -27,16 +27,20 @@ Although the culprit is found, we still have not figured out why the tests passe
 
 If Mockito cannot mock final classes, then why do local tests pass? Well, sure there must be some way to mock a final class, and that's exactly what happens when the `org.mockito:mockito-inline` dependency is added to the gradle build file. 
 
-The problem is that the failing module did not compile with the dependency above. Another submodule did compile it, but it was declared on its `build.gradle` as `testImplementation` not `testApi`, meaning that final classes could be mocked on that submodule only, not on the failing module.
+The problem is that the failing module did not compile with the dependency above. Instead, a submodule did declare mockito-inline on its `build.gradle` but not as a transitive dependency, meaning that final classes could be mocked on that submodule only, not on the top module whose tests were failing. 
 
-On the CI server the build rightly failed, but locally mockito-inline was compiled on the module above(where it shouldn't) and it wrongfully passed. How can the CI server be compiled and tested in a different way than locally? It turns out by running different commands that compile and test the source code. On the CI server the project is compiled and tested with gradle commands, thus the mockito-inline is not compiled and the test that mocks Kotlin classes fails. On the other hand the
-local builds used the test runner that is natively built into the Android Studio, which happens to compile all libraries irrespectively of how they are declared on each module's `gradle.build`.
+This could easily be fixed by either declaring mockito-inline as transitive, or adding it on the top module, but that would not explain why the test resources are compiled differently on the CI server than locally.
+
+Based on gradle files, on the CI server the build failed as expected, but locally mockito-inline was compiled on the top module (where it shouldn't) and it wrongfully passed. This, however, begs the following question: how can the CI server be compiled and tested in a different way than the local build?
+
+It turns out that different commands are employed to compile and test the source code. On the CI server the project is compiled and tested with gradle commands, thus the mockito-inline is not compiled and the test that mocks Kotlin classes fails. On the other hand the
+local builds used the test runner that is natively built into Android Studio, which happens to compile all libraries irrespectively of how they are declared on each module's `gradle.build`.
 
 ## But why did mockito-inline was used on the first place?
 
-The mystery has at last been solved but let's dig a little bit more. Why did a test try to mock an otherwise concrete class? And when/why was the mockito-inline dependency introduced first?
+At last, the mystery has been solved but let's dig a little deeper. Why did a test try to mock an otherwise concrete class? And when/why was the mockito-inline dependency introduced first?
 
-The Kotlin class was mocked just as a filler object for the constructor (i.e. a dummy object). No verifications were performed on that mocked object - neither was it used to stub a value. Hence, the concrete class should be used as is or in case of an interface, which cannot be instantiated, a dummy test double.
+The Kotlin class was mocked just as a filler object for the constructor. No verifications were performed on that mocked object - neither was it used to stub a value. Hence, the concrete class should be used as is or in case of an interface, which cannot be instantiated, a dummy test double.
 
 On the other hand, mockito-inline was introduced in the submodule in order to verify the behavior of a third-party library. Since we don't own the API and implementation of any third-party library, if we mocked and verified interactions with the library future versions of the API and the implementation could change in subtle ways and even though the tests pass the production code
 could fail.
