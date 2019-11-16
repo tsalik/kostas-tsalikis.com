@@ -3,9 +3,18 @@ title: "A confusing build failure"
 date: 2019-11-07T01:00:09+02:00
 draft: true
 tags: ["testing", "continuous integration"]
+description: "How can a unit test pass on Android Studio and fail on a Continuous Integration daemon?"
 ---
 
 {{< figure src="/images/posts/broken_builds/judge-dredd-under-arrest.jpg" title="" >}}
+
+##### TL;DR
+* Do not overuse mock test doubles.
+* Check the quality of tests in code reviews as well.
+* Validate that the build between Android Studio and CI servers is invoked through the same commands.
+* Investigate thoroughly build failures and try to have them fix as soon as possible, before merging.
+
+## A wild failing build appears
 
 Nowadays, it has become quite a common practice to build and check software on machines other than local workstations, most of the time called CI servers(CI stands for [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html)). This can be done either manually or automatically, usually triggered by a pull/merge request or a direct push on the main trunk (in git terminology most of the times named *master*).
 
@@ -18,7 +27,7 @@ test.
 
 So why was the build failing? When the unit tests ran, some of them would fail with an error stating that Mockito (more specifically [mockito-kotlin](https://github.com/nhaarman/mockito-kotlin)) - a library commonly used in Java and Android to provide mock test doubles and behavior verification - cannot mock final classes.
 
-In order to understand the error, let's try to understand first how Mockito works. It creates, at runtime, objects that extend interfaces or a classes designed to verify that a set of methods were called with the intended parameters. If a class that is attempted to be mocked is declared as `final`, then the error above will be thrown as a final class cannot be extended at compile or run time. In our unit test, a Kotlin class was mocked and as Kotlin classes are by default
+In order to understand the error, let's try to understand first how Mockito works. It creates, at runtime, objects that extend interfaces or classes designed to verify that a set of methods were called with the intended parameters. If a class that is attempted to be mocked is declared as `final`, then the error above will be thrown as a final class cannot be extended at compile or run time. In our unit test, a Kotlin class was mocked and as Kotlin classes are by default
 `final`, unless explicitly declared `open`, the error above was thrown.
 
 Although the culprit is found, we still have not figured out why the tests passed locally but failed on the CI server. 
@@ -40,29 +49,74 @@ local builds used the test runner that is natively built into Android Studio, wh
 
 At last, the mystery has been solved but let's dig a little deeper. Why did a test try to mock an otherwise concrete class? And when/why was the mockito-inline dependency introduced first?
 
-The Kotlin class was mocked just as a filler object for the constructor. No verifications were performed on that mocked object - neither was it used to stub a value. Hence, the concrete class should be used as is or in case of an interface, which cannot be instantiated, a dummy test double.
+The Kotlin class was mocked just as a filler object for the constructor. No verifications were performed on that mocked object - neither was it used to stub a value. Hence, the concrete class should be used as is or in case of an interface, which cannot be instantiated, a dummy test double. If a concrete class was mocked because it was difficult to instantiate(for example because it has too many dependencies on its constructor) that is a moment where it is needed to pause and
+think. As for value(`data`) classes? 
 
-On the other hand, mockito-inline was introduced in the submodule in order to verify the behavior of a third-party library. Since we don't own the API and implementation of any third-party library, if we mocked and verified interactions with the library future versions of the API and the implementation could change in subtle ways and even though the tests pass the production code
-could fail.
+Quoted directly from the book *Growing object-oriented Guided by Tests* [ [^1] ]:
 
-These kinds of tests give us no feedback and no confidence, in other words they provide zero value. We should either test the real thing or test it manually.
+> ***Don’t Mock Values***
+
+On the other hand, mockito-inline was introduced in the submodule in order to verify the behavior of a third-party library. Let's say that it was needed to test the persistence layer of an app. We could either run an integrated test in order to check if the code we've written works well against the real database, or we could mock the database as below.
+
+```java
+    @Test
+    public void givenDbIsEmpty_whenInsertData_thenDbSavesTheNewEntry() throws IOException {
+        /* DAO: Data Access Object
+         * usually referred to an object that fetches 
+         * data from a database or other kinds of data source. */
+        SomeDAO aDao = new SomeDAO();
+        database = mock(ExternalDatabase.class); 
+        when(database.select(any())).thenReturn(new SomeDAO());
+
+        database.insert(aDao);
+
+        SomeDAO savedDao = database.select(aDao);
+        assertThat(selectedDao, is(equalTo(aDao);
+    }
+```
+
+First of all, the problem with this test is that it actually tests nothing. The class under test is mocked and its result is stubbed, so it seems all that is tested here is the ability of the mock framework to stub a value. These kinds of tests give us no feedback and no confidence, in other words they provide zero value. We should instead automate the test for the real thing or test it manually.
+
+What's more, we are not listening to the tests. Instead of trying to guess how the library should respond to a request and find ways to mock/stub whatever is required to feed that answer to an assertion, we should add an Adapter layer over the third-party code, test the Adapter with the library and mock callbacks that we may pass to the Adapter layer. 
+
+Perhaps some direct quotes can paint the picture in a better way [ [^2] ]:
+
+> The mess in such tests is telling us that the design isn’t right but, instead of fixing the problem by improving the code, we have to carry the extra complexity in both code and test.
+
+> A second risk is that we have to be sure that the behavior we stub or mock matches what the external library will actually do.
 
 ## Summing up
 
-It's quite surprising how a single build failure unearthed multiple cultural and technical shortcomings. 
+So far we've seen that there is a build failure that was only caught on the CI server - caused by the abuse of mocks on unit tests and the difference in the way CI and local builds are created - which managed to pass to the main trunk and obstruct other pull requests even though no bugs were introduced. Is there a single root cause in this situation? Multiple layers of safety had too be overriden in order for the failure to reach the mainline.
 
- * We often push code that we broke - not only tests aren't green but also many times are not compiling. This means that tests are not treated as first class citizens.
-* Mocks are used ***too much***. Mocks are a special case of [test doubles](https://martinfowler.com/articles/mocksArentStubs.html) that are used for verification testing. They are a perfect tool for teasing out collaborators and interfaces, especially when the real objects are hard/costly to use, but should be used with moderation. This highlights a lack of understanding of the tools used for testing as well as when they should be applied. 
-* No review on the test code is performed. This, again, means that tests are treated as second class citizens and as a nice to have.
-* Local builds differ than CI builds. This means we're more prone to false positives/negatives.
-* Broken builds pass on the main trunk. This indicates that we're in a hurry more times than we would like.
+This is not so much an issue of technical deficiency - all developers on the team are quite competent. In order to understand the problems and their various causes let's state the facts and try to analyze the situation.
 
-Broken builds should alert the whole team that something has gone bad and needs immediate attention and fix. Just having tests is not enough - they should provide fast feedback and confidence. They should be easy to read and understand, easy to create and their failures easy to decode, as well as deterministic. These qualities of tests are the weapons that a developer can exploit in order to refactor aggressively and keep the system easy to understand and change. Add
+***Mocks are used excessively and on the wrong context***. They are a special case of test doubles that are used for verification testing [ [^3] ]. 
+
+Using mocks as the de facto test double highlights a lack of understanding of the tools used for testing. Quoting again Nat Pryce and Steve Freeman [ [^1] ]:
+
+> our intention in test-driven development is to use mock objects to bring out relationships between objects.
+
+In every test it should be carefully evaluated what kind of test doubles(if any) are needed and try to minimize mocks only for verifying behavior on interfaces. Of course, there are times where every rule needs to be broken, but most of times we can avoid using tools such as mockito-inline and PowerMock.
+
+***The build failed too late and only on the CI server***. The local workstations and the CI server should build with the same commands in order to avoid unpleasant surprises like this one. Unfortunately, it may be a common assumption that Android Studio builds and tests the same way with the setup of a CI server(this surely caught me by surprise as well). 
+
+Maybe we could check once in a while the way Android Studio builds, no more less because an update can change how things are built and tested. 
+
+***Broken code passed on the main trunk***. Even though the build failed, eventually the code was merged and made available for others. 
+
+The safety nets here could be more thorough code reviews that check the quality of the tests as well.
+
+Sometimes being in a hurry does not help and if the CI server is erratic and fails often from timeouts we may think that its a fault negative. In any case, we should always investigate why builds fail and try to fix them again as soon as possible. Just having tests is not enough - they should provide fast feedback and confidence. They should be easy to read and understand, easy to create and their failures easy to decode, as well as deterministic. These qualities of tests are the weapons that a developer can exploit in order to refactor aggressively and keep the system easy to understand and change. Add
 critical thinking to the mix in order to listen to what tests are trying to tell us about our design and we have the ingredients to battle complexity. 
 
 This may sound a little provocative, but we could as well delete tests that do not adhere to the qualities above as we end up with double the burden of maintenance and confusion.
 
-As a personal critique on my part I could probably say that even though I tried, I should emphasize even more the dangers of mocking too much. After all one cannot learn just by one example, especially from code that is not created with testing in mind - meaning there will be cut corners and "broken" rules on these examples.
+As a personal critique on my part, I could probably say that when I was tasked to provide guidelines to the team about verification testing, I felt that I should have emphasized even more on the dangers of mocking too much. After all one cannot learn just by one example, especially from code that is not created with testing in mind - meaning there will be cut corners and "broken" rules on these examples.
 
 Finally, this can be seen as a further proof that tools by themselves do not solve problems. Having tests and a CI server is not enough. It is critical to have a deep understanding why these set of techniques and tools are used, as well as the right place and way to use them. Fortunately, this level of understanding is not the result of arcane magic but can be acquired through repetitive practice and retrospection. We are bound to fail through inexperience but bound to succeed through
 curiosity and will to learn.
+
+[^1]: Nat Pryce - Steve Freeman: Growing object-oriented Guided by Tests, *Chapter 20: Listening to the tests*
+[^2]: Nat Pryce - Steve Freeman: Growing object oriented Guided by Tests, *Chapter 8: Building on Third-Party Code*
+[^3]: [Martin Fowler: Mocks aren't Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
