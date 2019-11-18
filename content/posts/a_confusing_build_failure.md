@@ -22,7 +22,7 @@ Nowadays, it has become quite a common practice to build and check software on m
 
 The point is that there's a single place where binaries are packaged and code is checked for quality and correctness, so we can merge changes safely and with confidence. 
 
-When a failure appears in a build, it should be investigated why it happened. Did a commit actually break functionality? Were static code analysis checks too harsh and maybe they must be relaxed a little bit? Recently, one of the failures that left me most perplexed was a build where the unit tests failed on the CI server unit tests but passed locally! How did this happen? Investigating on this confusing build failure unearthed bigger problems than just a breaking unit
+When a failure appears in a build, it should be investigated why it happened. Did a commit actually break functionality? Were static code analysis checks too harsh and maybe they must be relaxed a little bit? Recently, one of the failures that left me most perplexed was a build where the unit tests failed on the CI server but passed locally! How did this happen? Investigating on this confusing build failure unearthed bigger problems than just a breaking unit
 test.
 
 ## Mockito cannot mock final classes
@@ -45,7 +45,7 @@ This could easily be fixed by either declaring mockito-inline as transitive, or 
 Based on gradle files, on the CI server the build failed as expected, but locally mockito-inline was compiled on the top module (where it shouldn't) and it wrongfully passed. This, however, begs the following question: how can the CI server be compiled and tested in a different way than the local build?
 
 It turns out that different commands are employed to compile and test the source code. On the CI server the project is compiled and tested with gradle commands, thus the mockito-inline is not compiled and the test that mocks Kotlin classes fails. On the other hand, the
-local builds used the test runner that is natively built into Android Studio, which happens to compile all libraries irrespectively of how they are declared on each module's `gradle.build`.
+local builds used the test runner that is natively built into Android Studio, which happens to compile all libraries irrespectively of how they are declared on each module's `build.gradle`.
 
 ## But why did mockito-inline was used on the first place?
 
@@ -111,7 +111,7 @@ The safety nets here could be more thorough code reviews that check the quality 
 
 ## Summing up
 
-Sometimes being in a hurry does not help and if the CI server is erratic and fails often from timeouts, we may think that it's a fault negative. In any case, we should always investigate why builds fail and try to fix them again as soon as possible. Just having tests is not enough - they should provide fast feedback and confidence. They should be easy to read and understand, easy to create and their failures easy to decode, as well as deterministic. These qualities of tests are the weapons that a developer can exploit in order to refactor aggressively and keep the system easy to understand and change. Add
+Sometimes being in a hurry does not help and if the CI server is erratic and fails often from timeouts, we may think that it's a fault negative. In any case, we should always investigate why builds fail and try to fix them again as soon as possible. Just having tests is not enough - they should provide fast feedback and confidence. They should be fast, deterministic, easy to read and understand, easy to set up and their failures clear to diagnose. These qualities of tests are the weapons that a developer can exploit in order to refactor aggressively and keep the system easy to understand and change. Add
 critical thinking to the mix in order to listen to what tests are trying to tell us about our design and we have the ingredients to battle complexity. 
 
 This may sound a little provocative, but we could as well delete tests that do not adhere to the qualities above as we end up with double the burden of maintenance and confusion.
