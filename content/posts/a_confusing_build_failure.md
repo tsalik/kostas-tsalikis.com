@@ -85,7 +85,7 @@ Perhaps some direct quotes can paint the picture in a better way [ [^2] ]:
 
 > A second risk is that we have to be sure that the behavior we stub or mock matches what the external library will actually do.
 
-## Summing up
+## Mitigate the many faces of the problem 
 
 So far we've seen that there is a build failure that was only caught on the CI server caused by the abuse of mocks on unit tests and the difference in the way CI and local builds are created. Moreover, the failure managed to pass to the main trunk and obstruct other pull requests even though no bugs were introduced. Is there a single root cause in this situation? Multiple layers of safety had to be overridden in order for the failure to reach the mainline.
 
@@ -101,11 +101,13 @@ In every test, it should be carefully evaluated what kind of test doubles (if an
 
 ***The build failed too late and only on the CI server***. The local workstations and the CI server should build with the same commands in order to avoid unpleasant surprises like this one. Unfortunately, it may be a common assumption that Android Studio builds and tests the same way with the setup of a CI server(this surely caught me by surprise as well). 
 
-Maybe we could check once in a while the way Android Studio builds, no more less because an update can change how things are built and tested. 
+Maybe we could check once in a while the way Android Studio builds because an update can change how things are built and tested. 
 
 ***Broken code passed on the main trunk***. Even though the build failed, eventually the code was merged and made available for others. 
 
 The safety nets here could be more thorough code reviews that check the quality of the tests as well.
+
+## Summing up
 
 Sometimes being in a hurry does not help and if the CI server is erratic and fails often from timeouts, we may think that it's a fault negative. In any case, we should always investigate why builds fail and try to fix them again as soon as possible. Just having tests is not enough - they should provide fast feedback and confidence. They should be easy to read and understand, easy to create and their failures easy to decode, as well as deterministic. These qualities of tests are the weapons that a developer can exploit in order to refactor aggressively and keep the system easy to understand and change. Add
 critical thinking to the mix in order to listen to what tests are trying to tell us about our design and we have the ingredients to battle complexity. 
