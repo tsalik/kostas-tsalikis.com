@@ -8,6 +8,8 @@ description: "How can a unit test pass on Android Studio and fail on a Continuou
 
 {{< figure src="/images/posts/broken_builds/judge-dredd-under-arrest.jpg" title="" >}}
 
+Special and many thanks to *[Kleomenis Tsiligkos](https://twitter.com/ktsiligkos)* and *[Michalis Kolozoff](https://www.linkedin.com/in/michalis-romanos-kolozoff-03b19180/)* for proof reading. 
+
 ##### TL;DR
 * Do not overuse mock test doubles.
 * Check the quality of tests in code reviews as well.
