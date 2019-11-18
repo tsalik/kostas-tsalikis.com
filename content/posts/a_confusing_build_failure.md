@@ -12,7 +12,7 @@ description: "How can a unit test pass on Android Studio and fail on a Continuou
 * Do not overuse mock test doubles.
 * Check the quality of tests in code reviews as well.
 * Validate that the build between Android Studio and CI servers is invoked through the same commands.
-* Investigate thoroughly build failures and try to have them fix as soon as possible, before merging.
+* Investigate thoroughly build failures and try to have them fixed as soon as possible, before merging.
 
 ## A wild failing build appears
 
@@ -20,7 +20,7 @@ Nowadays, it has become quite a common practice to build and check software on m
 
 The point is that there's a single place where binaries are packaged and code is checked for quality and correctness, so we can merge changes safely and with confidence. 
 
-When a failure appears in a build it should be investigated why did it happen. Did a commit actually break functionality? Were static code analysis checks too harsh and maybe they must be relaxed a little bit? Recently, one of the failures that left me most perplexed was a build where the unit tests failed on the CI server unit tests but passed locally! How did this happen? Investigating on this confusing build failure unearthed bigger problems than just a breaking unit
+When a failure appears in a build, it should be investigated why it happened. Did a commit actually break functionality? Were static code analysis checks too harsh and maybe they must be relaxed a little bit? Recently, one of the failures that left me most perplexed was a build where the unit tests failed on the CI server unit tests but passed locally! How did this happen? Investigating on this confusing build failure unearthed bigger problems than just a breaking unit
 test.
 
 ## Mockito cannot mock final classes
@@ -42,21 +42,21 @@ This could easily be fixed by either declaring mockito-inline as transitive, or 
 
 Based on gradle files, on the CI server the build failed as expected, but locally mockito-inline was compiled on the top module (where it shouldn't) and it wrongfully passed. This, however, begs the following question: how can the CI server be compiled and tested in a different way than the local build?
 
-It turns out that different commands are employed to compile and test the source code. On the CI server the project is compiled and tested with gradle commands, thus the mockito-inline is not compiled and the test that mocks Kotlin classes fails. On the other hand the
+It turns out that different commands are employed to compile and test the source code. On the CI server the project is compiled and tested with gradle commands, thus the mockito-inline is not compiled and the test that mocks Kotlin classes fails. On the other hand, the
 local builds used the test runner that is natively built into Android Studio, which happens to compile all libraries irrespectively of how they are declared on each module's `gradle.build`.
 
 ## But why did mockito-inline was used on the first place?
 
 At last, the mystery has been solved but let's dig a little deeper. Why did a test try to mock an otherwise concrete class? And when/why was the mockito-inline dependency introduced first?
 
-The Kotlin class was mocked just as a filler object for the constructor. No verifications were performed on that mocked object - neither was it used to stub a value. Hence, the concrete class should be used as is or in case of an interface, which cannot be instantiated, a dummy test double. If a concrete class was mocked because it was difficult to instantiate(for example because it has too many dependencies on its constructor) that is a moment where it is needed to pause and
-think. As for value(`data`) classes? 
+The Kotlin class was mocked just as a filler object for the constructor. No verifications were performed on that mocked object - neither was it used to stub a value. Hence, the concrete class should be used as is or in case of an interface, which cannot be instantiated, a dummy test double. If, however, a concrete class was mocked because it was difficult to instantiate (e.g. it has too many dependencies on its constructor), then this is a moment where one needs to pause and
+think twice. As for value(`data`) classes? 
 
 Quoted directly from the book *Growing object-oriented Guided by Tests* [ [^1] ]:
 
 > ***Don’t Mock Values***
 
-On the other hand, mockito-inline was introduced in the submodule in order to verify the behavior of a third-party library. Let's say that it was needed to test the persistence layer of an app. We could either run an integrated test in order to check if the code we've written works well against the real database, or we could mock the database as below.
+On the other hand, mockito-inline was introduced in the submodule in order to verify the behavior of a third-party library. Let's say that we had to test the persistence layer of an app. We could either run an integrated test in order to check if the code we've written works well against the real database, or we could mock the database as below.
 
 ```java
     @Test
@@ -87,9 +87,9 @@ Perhaps some direct quotes can paint the picture in a better way [ [^2] ]:
 
 ## Summing up
 
-So far we've seen that there is a build failure that was only caught on the CI server - caused by the abuse of mocks on unit tests and the difference in the way CI and local builds are created - which managed to pass to the main trunk and obstruct other pull requests even though no bugs were introduced. Is there a single root cause in this situation? Multiple layers of safety had too be overriden in order for the failure to reach the mainline.
+So far we've seen that there is a build failure that was only caught on the CI server caused by the abuse of mocks on unit tests and the difference in the way CI and local builds are created. Moreover, the failure managed to pass to the main trunk and obstruct other pull requests even though no bugs were introduced. Is there a single root cause in this situation? Multiple layers of safety had to be overridden in order for the failure to reach the mainline.
 
-This is not so much an issue of technical deficiency - all developers on the team are quite competent. In order to understand the problems and their various causes let's state the facts and try to analyze the situation.
+This is not so much an issue of technical deficiency - all developers on the team are quite competent. In order to understand the problems and their various causes, let's state the facts and try to analyze the situation.
 
 ***Mocks are used excessively and on the wrong context***. They are a special case of test doubles that are used for verification testing [ [^3] ]. 
 
@@ -97,7 +97,7 @@ Using mocks as the de facto test double highlights a lack of understanding of th
 
 > our intention in test-driven development is to use mock objects to bring out relationships between objects.
 
-In every test it should be carefully evaluated what kind of test doubles(if any) are needed and try to minimize mocks only for verifying behavior on interfaces. Of course, there are times where every rule needs to be broken, but most of times we can avoid using tools such as mockito-inline and PowerMock.
+In every test, it should be carefully evaluated what kind of test doubles (if any) are required and try to minimize mocks only for verifying behavior on interfaces. Of course, there are times where every rule needs to be broken, but most of times we can avoid using tools such as mockito-inline and PowerMock.
 
 ***The build failed too late and only on the CI server***. The local workstations and the CI server should build with the same commands in order to avoid unpleasant surprises like this one. Unfortunately, it may be a common assumption that Android Studio builds and tests the same way with the setup of a CI server(this surely caught me by surprise as well). 
 
@@ -107,7 +107,7 @@ Maybe we could check once in a while the way Android Studio builds, no more less
 
 The safety nets here could be more thorough code reviews that check the quality of the tests as well.
 
-Sometimes being in a hurry does not help and if the CI server is erratic and fails often from timeouts we may think that its a fault negative. In any case, we should always investigate why builds fail and try to fix them again as soon as possible. Just having tests is not enough - they should provide fast feedback and confidence. They should be easy to read and understand, easy to create and their failures easy to decode, as well as deterministic. These qualities of tests are the weapons that a developer can exploit in order to refactor aggressively and keep the system easy to understand and change. Add
+Sometimes being in a hurry does not help and if the CI server is erratic and fails often from timeouts, we may think that it's a fault negative. In any case, we should always investigate why builds fail and try to fix them again as soon as possible. Just having tests is not enough - they should provide fast feedback and confidence. They should be easy to read and understand, easy to create and their failures easy to decode, as well as deterministic. These qualities of tests are the weapons that a developer can exploit in order to refactor aggressively and keep the system easy to understand and change. Add
 critical thinking to the mix in order to listen to what tests are trying to tell us about our design and we have the ingredients to battle complexity. 
 
 This may sound a little provocative, but we could as well delete tests that do not adhere to the qualities above as we end up with double the burden of maintenance and confusion.
