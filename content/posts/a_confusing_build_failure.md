@@ -27,7 +27,7 @@ test.
 
 ## Mockito cannot mock final classes
 
-So why was the build failing? When the unit tests ran, some of them would fail with an error stating that Mockito (more specifically [mockito-kotlin](https://github.com/nhaarman/mockito-kotlin)) - a library commonly used in Java and Android to provide mock test doubles and behavior verification - cannot mock final classes.
+So why was the build failing? When the unit tests ran, some of them would fail with an error stating that Mockito (more specifically [mockito-kotlin](https://github.com/nhaarman/mockito-kotlin)) - a library commonly used in Java and Android to provide mock test doubles for behavior verification - cannot mock final classes.
 
 In order to understand the error, let's try to understand first how Mockito works. It creates, at runtime, objects that extend interfaces or classes designed to verify that a set of methods were called with the intended parameters. If a class that is attempted to be mocked is declared as `final`, then the error above will be thrown as a final class cannot be extended at compile or run time. In our unit test, a Kotlin class was mocked and as Kotlin classes are by default
 `final`, unless explicitly declared `open`, the error above was thrown.
