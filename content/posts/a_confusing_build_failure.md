@@ -1,8 +1,8 @@
 ---
 title: "A confusing build failure"
 date: 2019-11-07T01:00:09+02:00
-draft: true
 tags: ["testing", "continuous integration"]
+publishDate: 2019-11-20T01:00:09+02:00
 description: "How can a unit test pass on Android Studio and fail on a Continuous Integration daemon?"
 ---
 
