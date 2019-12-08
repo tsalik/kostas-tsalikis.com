@@ -27,7 +27,7 @@
   <hr>
   <h3>Leave your thoughts</h3>
 
-  <form class="post-new-comment" method="POST" action="https://api.staticman.net/v2/entry/tsalik/kostas-tsalikis.com/staticman/comments">
+  <form class="post-new-comment" method="POST" data-netlify="true">
     <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
     <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
     <input type="hidden" name="options[redirectError]" value="{{ .Permalink }}#comment-submitted">
