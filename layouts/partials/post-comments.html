@@ -27,13 +27,13 @@
   <hr>
   <h3>Leave your thoughts</h3>
 
-  <form class="post-new-comment" method="POST" data-netlify="true">
+  <form class="post-new-comment" method="POST" data-netlify="true" name="comments">
     <input type="hidden" name="options[redirect]" value="{{ .Permalink }}#comment-submitted">
-    <input type="hidden" name="options[entryId]" value="{{ .UniqueID }}">
+    <input type="hidden" name="entryId" value="{{ .UniqueID }}">
     <input type="hidden" name="options[redirectError]" value="{{ .Permalink }}#comment-submitted">
-    <input name="fields[name]" type="text" class="post-comment-field" placeholder="Your name">
-    <input name="fields[email]" type="email" class="post-comment-field" placeholder="Your email address">
-    <textarea name="fields[body]" class="post-comment-field" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
+    <input name="name" type="text" class="post-comment-field" placeholder="Your name">
+    <input name="email" type="email" class="post-comment-field" placeholder="Your email address">
+    <textarea name="body" class="post-comment-field" placeholder="Your message. Feel free to use Markdown." rows="10"></textarea>
     <input type="submit" class="post-comment-field btn" value="Submit">
   </form>
 </section>
