@@ -1,8 +1,7 @@
 ---
 title: "Thoughts on the Bowling Kata"
-date: 2020-11-02T22:47:24+02:00
+date: 2020-11-10T12:47:24+02:00
 tags: ["TDD"]
-draft: true
 description: "Practicing TDD and incremental design through the Bowling Kata"
 ---
 
