@@ -1,54 +1,35 @@
-{{ partial "head.html" . }}
-    <body>
-       {{ partial "nav.html" . }}
+{{ define "main" }}
 
-        <section id="wrapper" class="post">
-            <article>
-                <header>
-                    <h1>
-                        {{ .Title }}
-                    </h1>
-                    <h2 class="headline">
-                    {{ .PublishDate.Format "Jan 2, 2006" }}
-                    · {{ .ReadingTime }} minute read
-                      <span class="tags">
-                      {{ with .Params.tags }}
-                      {{ if ge (len .) 1 }}
-                          {{ range . }}
-                              <a href="/tags/{{ . | urlize }}">{{ . }}</a>
-                          {{ end }}
-                      {{ end }}
-                      {{ end}}
-                      </span>
-                    </h2>
-                </header>
-                {{ if .Site.Params.enableToc }}
-                  {{ if .TableOfContents }}
-                    <div id="toc">
-                      {{ .TableOfContents }}
-                    </div>
-                  {{ end }}
-                {{ end }}
-                <section id="post-body">
-                    {{ .Content }}
-                </section>
-            </article>
+<section id="single">
+    <h1 class="title">{{ .Title }}</h1>
 
-            {{ if .Site.Params.enableShare }}
-                {{ partial "share.html" . }}
+    <div class="tip">
+        <span>
+          {{ .Date.Format "Jan 2, 2006" }}
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          {{ .ReadingTime }} minute read
+        </span>
+    </div>
+    {{ with .Params.tags }}
+        <div class="tags">
+            {{ range . }}
+                <a href="{{ "tags/" | absURL }}{{ . | urlize }}">{{ lower . }}</a>
             {{ end }}
+        </div>
+    {{ end}}
+ 
 
-            {{ if eq (getenv "HUGO_ENV") "production" }}
-              {{ partial "post-comments.html" . }}
-            {{ end }}
+    <div class="content">
+      {{  .Content }}
+    </div>
 
-            {{ if .Site.Params.showLatestPosts }}
-                {{ partial "latest-posts.html" . }}
-            {{ end }}
+   
+    {{ partial "comment.html" . }}
 
-            {{ partial "footer.html" . }}
-        </section>
+</section>
 
-        {{ partial "js.html" . }}
-    </body>
-</html>
+{{ end }}
