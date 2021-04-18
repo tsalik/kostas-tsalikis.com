@@ -54,7 +54,7 @@
         "link": "https://play.google.com/store/apps/details?id=gr.ab.vassilopoulos",
         "image": "https://lh3.ggpht.com/N2H0g4eJU1NyLdBYp871oxcnh9q4cM9MOh5fNiys2YimRDhEvgntubdLKPDt4iXvSQ=w300",
         "description": "Loyalty app for AB Vasilopoulos, one of the biggest retail food stores in Greece",
-        "show": true
+        "show": false
       },
       {
         "name": "SpiritsUP",

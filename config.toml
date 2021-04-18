@@ -38,7 +38,7 @@ Paginate = 5
   enableSummary = true
   useDescriptionReplaceSummary = true
 
-  enableGoogleAnalytics = true
+  enableGoogleAnalytics = false
 
   iconFont = "font-awesome"
 
