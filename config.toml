@@ -1,7 +1,7 @@
 baseURL = "https://www.droidship.com/"
 languageCode = "en-us"
 title = "Kostas Tsalikis"
-theme = "hugo-theme-cactus-plus"
+theme = "github.com/nodejh/hugo-theme-mini"
 googleAnalytics = "UA-112509011-1"
 pygmentsUseClasses=true
 pygmentsCodefences=true
@@ -46,9 +46,8 @@ Paginate = 5
   enableRSS = true
 
 [social]
-	twitter-square = "https://twitter.com/tsalikispk"
-	github-square = "https://github.com/tsalik"
-  linkedin-square = "https://www.linkedin.com/in/kostas-tsalikis-400002126/"
+	twitter = "https://twitter.com/tsalikispk"
+	github = "https://github.com/tsalik"
 
 [taxonomies]
   tag = "tags"
