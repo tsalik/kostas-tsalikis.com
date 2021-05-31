@@ -55,3 +55,8 @@ Paginate = 5
 [services]
   [services.twitter]
     disableInlineCSS = true
+
+[outputs]
+  page = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS", "JSON"]
+
