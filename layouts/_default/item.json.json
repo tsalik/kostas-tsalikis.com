@@ -1,0 +1,6 @@
+{
+    "title" : "{{ .Title }}",
+    "path" : "{{ .RelPermalink }}",
+    "description" : "{{ .Description }}",
+    "publishDate" : "{{ .PublishDate.Format "Jan 2, 2006" }}"
+}
