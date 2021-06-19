@@ -1,19 +1,66 @@
 [
   {
-    "company": "Atcom",
+    "company": "Advantage FSE",
     "projects": [
       {
-        "name": "Gregory's",
-        "link": "https://play.google.com/store/apps/details?id=gr.mobile.gregorys",
-        "image": "https://lh3.googleusercontent.com/047MzxOdQox0pHibDeR-3mvN_4B_x-KHj1H20TX6huTaNel95Z7IZfHMkef73-RCFaY=w300",
-        "description": "E-ordering app for Gregory's, a leading franchise of the food and coffee industry in Greece.",
+        "name": "First Bank Romania",
+        "link": "https://play.google.com/store/apps/details?id=ro.firstbank.direct",
+        "image": "https://play-lh.googleusercontent.com/E0xlJWiGslJdxlWcuxSoRg2BYqkF6ZfSuKAOGWQf0A3Cfl2uu1xr0tjuPF3vgNezVw=s180",
+        "description": "Banking app for First Bank",
         "show": true
       },
+      {
+        "name": "Combank Digital",
+        "link": "https://play.google.com/store/apps/details?id=combank.com.combankdigital",
+        "image": "https://play-lh.googleusercontent.com/4YO8gqSPDD59smkzZYFFY4nBgRLQ3u9KCJKc8MF3obTz1ok7Uu3jAHNtMK38cRyx3UWF=s180",
+        "description": "Banking app for Commercial Bank of Ceylon",
+        "show": true
+      },
+      {
+        "name": "VM Express Mobile App",
+        "link": "https://play.google.com/store/apps/details?id=com.victoriamutual.live.direct",
+        "image": "https://play-lh.googleusercontent.com/qN31zVamgOKZ-ZL1cLhX8yp61NNLMVgQ45_fszDeusYAwQnw2Q0HRq_xmQoxvQFaLA=s180",
+        "description": "Banking app for Victoria Mutual Bank",
+        "show": true
+      },
+      {
+        "name": "CPM Movil",
+        "link": "https://play.google.com/store/apps/details?id=coop.cpm.cpmenlinea.mobile",
+        "image": "https://play-lh.googleusercontent.com/zH0z8o0E9Fs_xUn49j7j5-mBwRhYAslsAR5C9YD3M-APlYgNwCwyD-6et6qFbMv2jFc=s180",
+        "description": "Banking app for Caja Popular Mexicana",
+        "show": true
+      },
+      {
+        "name": "Pancreta Online",
+        "link": "https://play.google.com/store/apps/details?id=gr.pancretabank.direct",
+        "image": "https://play-lh.googleusercontent.com/L5Xf2CHCImXJcTwdbFKE3XcDcO2zJ1JLxOQuWdgwkYZC5tX5a8Hh08URc-C7c9W3qNc=s180",
+        "description": "Banking app for Pancreta Bank",
+        "show": true
+      },
+      {
+        "name": "Clarien iBank Mobile",
+        "link": "https://play.google.com/store/apps/details?id=com.clarienibank.direct",
+        "image": "https://play-lh.googleusercontent.com/k1fSnRN8sM6djq1S0XfhUVHFr38JBBneK9EVdfww9zB9uTLTLv_qPfmHxW3pefICZr_J=s180",
+        "description": "Banking app for Clarien Bank",
+        "show": true
+      }
+    ]
+  },
+  {
+    "company": "Atcom",
+    "projects": [
       {
         "name": "Freemeteo",
         "link": "https://play.google.com/store/apps/details?id=gr.mobile.freemeteo",
         "image": "https://lh3.googleusercontent.com/O3Ncx5cq4eQVf4gehGVRqjfj1cNQdBBZ4Y2FNOhxs1E9ipynpXfE5CXHMrMib7E5jL67=w300",
         "description": "Weather app with free and paid versions, featuring widgets",
+        "show": true
+      },
+      {
+        "name": "Gregory's",
+        "link": "https://play.google.com/store/apps/details?id=gr.mobile.gregorys",
+        "image": "https://lh3.googleusercontent.com/047MzxOdQox0pHibDeR-3mvN_4B_x-KHj1H20TX6huTaNel95Z7IZfHMkef73-RCFaY=w300",
+        "description": "E-ordering app for Gregory's, a leading franchise of the food and coffee industry in Greece.",
         "show": true
       },
       {
