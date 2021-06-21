@@ -91,3 +91,8 @@ img {
   font-style: italic;
   margin-top: 1em;
 }
+
+p, pre {
+    line-break: auto;
+    word-break: unset;
+}
