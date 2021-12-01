@@ -7,4 +7,4 @@ Kostas has been an Android Developer since 2015. He is passionate about clean co
 
 His interests include Test Driven Development, Continuous Integration and Development and how all these techniques can be applied in the context of Android development.
 
-Currently crafting software *[@Advantage](https://www.linkedin.com/company/3084960/)*.
+Currently crafting software at *[Marshmallow](https://www.linkedin.com/company/marshmallowltd/)*.
