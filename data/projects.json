@@ -1,5 +1,17 @@
 [
   {
+    "company": "Marshmallow",
+    "projects": [
+      {
+        "name": "Marshmallow",
+        "link": "https://play.google.com/store/apps/details?id=com.marshmallow.marshmallow",
+        "image": "https://play-lh.googleusercontent.com/QOs_mn5j8ddcfE4cIkvjetD1QefaKQxQNmhIvdGjPghAToVCjMQvW_Ig0-5qVKvO4A=w240-h480",
+        "description": "Marshmallow makes insurance more accessible and more effordable for as many people as possible",
+        "show": true
+      }
+    ]
+  },
+  {
     "company": "Advantage FSE",
     "projects": [
       {
