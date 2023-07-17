@@ -1,7 +1,7 @@
 ---
 title: "Testing LazyColumn in Compose"
-date: 2023-07-09T09:00:00+03:00
-draft: true
+date: 2023-07-17T09:00:00+03:00
+tags: ["testing", "espresso", "jetpack compose"]
 description: "A quick guide on how to test LazyColumns with Espresso"
 ---
 
