@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.104.3'
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Verify Site Structure
+        run: |
+          # Check if essential pages exist
+          echo "Checking essential pages..."
+          test -f public/index.html || (echo "❌ Missing homepage" && exit 1)
+          test -f public/posts/index.html || (echo "❌ Missing posts listing" && exit 1)
+          test -f public/tags/index.html || (echo "❌ Missing tags page" && exit 1)
+          echo "✅ Essential pages exist"
+
+          # Check for navigation elements
+          echo "Checking navigation structure..."
+          grep -q '<nav' public/index.html || (echo "❌ Missing navigation menu" && exit 1)
+          grep -q '<footer' public/index.html || (echo "❌ Missing footer" && exit 1)
+          echo "✅ Navigation structure verified"
+
+          # Verify latest post appears first
+          echo "Checking latest post..."
+          grep -q "Testing LazyColumn in Compose" public/index.html || (echo "❌ Latest post not found on homepage" && exit 1)
+          grep -q "Jul 17, 2023" public/index.html || (echo "❌ Latest post date not found" && exit 1)
+          echo "✅ Latest post verified"
+
+          # Check tag structure
+          echo "Checking tag pages..."
+          test -d public/tags/testing || (echo "❌ Missing 'testing' tag page" && exit 1)
+          test -d public/tags/espresso || (echo "❌ Missing 'espresso' tag page" && exit 1)
+          test -d public/tags/jetpack-compose || (echo "❌ Missing 'jetpack-compose' tag page" && exit 1)
+          echo "✅ Tag structure verified"
+
+          # Verify social links
+          echo "Checking social links..."
+          grep -q "github.com/tsalik" public/index.html || (echo "❌ Missing GitHub link" && exit 1)
+          grep -q "twitter.com/tsalikispk" public/index.html || (echo "❌ Missing Twitter link" && exit 1)
+          echo "✅ Social links verified"
+
+          # Check RSS feed
+          echo "Checking RSS feed..."
+          test -f public/index.xml || (echo "❌ Missing RSS feed" && exit 1)
+          grep -q "<title>Kostas Tsalikis</title>" public/index.xml || (echo "❌ RSS feed missing title" && exit 1)
+          echo "✅ RSS feed verified"
+
+          echo "All checks passed! 🎉"
