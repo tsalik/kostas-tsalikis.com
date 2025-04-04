@@ -24,10 +24,6 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: Check Links
-        uses: lycheeverse/lychee-action@v1.8.0
-        with:
-          args: --verbose --no-progress './public/**/*.html'
-          fail: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Validate HTML
+        run: |
+          npx html-validate public/**/*.html
