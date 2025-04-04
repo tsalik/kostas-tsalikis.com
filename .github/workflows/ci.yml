@@ -24,6 +24,20 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: Validate HTML
+      - name: Start Hugo Server
         run: |
-          npx html-validate public/**/*.html
+          hugo server -D &
+          sleep 5
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          start: hugo server
+          wait-on: 'http://localhost:1313'
+          config: baseUrl=http://localhost:1313
+          record: false
+
+      - name: Stop Hugo Server
+        if: always()
+        run: pkill hugo
