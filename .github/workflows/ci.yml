@@ -42,7 +42,7 @@ jobs:
           # Verify latest post appears first
           echo "Checking latest post..."
           grep -q "Testing LazyColumn in Compose" public/index.html || (echo "❌ Latest post not found on homepage" && exit 1)
-          grep -q "2023-07-17" public/index.html || (echo "❌ Latest post date not found" && exit 1)
+          grep -q "Jul 17, 2023" public/index.html || (echo "❌ Latest post date not found" && exit 1)
           echo "✅ Latest post verified"
 
           # Check tag structure
