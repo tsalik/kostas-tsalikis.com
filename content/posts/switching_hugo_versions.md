@@ -19,17 +19,21 @@ draft: true
  4. Hugo Version Manager is an easy way of handling multiple Hugo versions whilst allowing existing installations coexist.  
 
 
-For quite some time I wanted to build for myself a knowledge base.. Most of the times I take manual notes (yes, on an actual physical notepad), but it's difficult storing and querying them when you need a refresher. I also take notes in Notion, but I would like to be able to browse my knowledge base offline. Finally, I decided to build my unified knowledge base as a static site with Hugo. 
+For quite some time I wanted to build for myself a knowledge base. Most of the times I take manual notes (yes, on an actual physical notepad). It's too difficult though to store and query them when you need a refresher. I also take notes in Notion, but I would like to be able to browse my knowledge base offline. Finally, I decided to build my unified knowledge base as a static site with Hugo. 
 
-I had to decide which theme to use, but unfortunately, most themes suitable for my goal were targeting the latest Hugo version. I was skeptical of bumping to the latest version, as I hadn't updated my personal blog in ages. After all, I wanted to still be able to publish a new blog post without having to fix any issues related to compatibility between my blog's theme and the latest Hugo version.
+As soon as I started building my new Hugo site, I realized that most themes of my liking needed a newer Hugo version. I was skeptical of bumping to the latest version, as I hadn't updated my personal blog in ages. Updating Hugo could mean that I wouldn't be able to publish a new post. 
 
 Nevertheless, I tried to update to the latest Hugo, and to no one's surprise building my blog failed. 
 
-## Reverting to an older Hugo version
+## Reverting to an Older Hugo Version
 
-I originally had installed Hugo through `brew`. Unfortunately, I learned the hard way that `brew` only supports the latest Hugo version and not older ones. I found out that switching between Hugo versions(or reverting to an older one) is not straightforward at all.
+I originally had installed Hugo through `brew`. I learned the hard way that `brew` only supports the latest Hugo version and not older ones. There was a quick and hacky workaround to downgrade to an older version(thanks to [the Hugo community](https://discourse.gohugo.io/t/switching-hugo-versions/38251/2) ❤️ ).
 
-The quick and somewhat hacky workaround(after some digging in [the Hugo community](https://discourse.gohugo.io/t/switching-hugo-versions/38251/2)) would be to find the correct bottle that installed the old Hugo version I needed, download the raw file locally(let's say as `hugo.rb`) and then run `brew install hugo.rb`. This indeed solved the problem and I was able to build my blog again.
+The steps were:
+1. Find the `brew` bottle of the specific Hugo version you want to downgrade to in the [HomeBrew repo](https://github.com/Homebrew/homebrew-core).
+2. Download the formula file locally(let's say as `hugo.rb`).
+3. Install it by running `brew install hugo.rb`.
+4. Verify you installed the appropriate version by running `hugo version`.
 
 ## But I need to work with multiple Hugo versions
 
