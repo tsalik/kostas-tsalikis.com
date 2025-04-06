@@ -1,5 +1,5 @@
 ---
-title: "Switching Hugo versions"
+title: "Switching Hugo Versions"
 date: 2025-04-05T14:37:40+03:00
 description: "Using Hugo Version Manager to install multiple Hugo versions on a single workstation"
 tags: ["Hugo"]
