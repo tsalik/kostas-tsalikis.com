@@ -37,7 +37,7 @@ The steps were:
 
 ## But I need to work with multiple Hugo versions
 
-I still needed to have a different version of Hugo for my personal blog and a newer one for the knowledge base that I am building. There are multiple ways of doing so, but my personal choice was Hugo Version Manager(a.k.a. `hvm`).
+I still needed to work with Hugo versions at the same time. here are several ways of doing so, but my personal choice was Hugo Version Manager(a.k.a. `hvm`).
 
 ### 1. Installing Hugo via NPM
 
