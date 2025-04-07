@@ -35,9 +35,9 @@ The steps were:
 3. Install it by running `brew install hugo.rb`.
 4. Verify you installed the appropriate version by running `hugo version`.
 
-## But I need to work with multiple Hugo versions
+## But I Need to Work with Different Hugo Versions
 
-I still needed to work with Hugo versions at the same time. here are several ways of doing so, but my personal choice was Hugo Version Manager(a.k.a. `hvm`).
+I still needed to work with more than one Hugo version at the same time. here are several ways of doing so, but my personal choice was Hugo Version Manager(a.k.a. `hvm`).
 
 ### 1. Installing Hugo via NPM
 
@@ -45,33 +45,37 @@ One way to install Hugo is via NPM with [`hugo-installer`](https://github.com/do
 
 ### 2. Installing via the asdf Version Manager
 
-[`asdf`](https://asdf-vm.com/) is a version manager which allows to install various runtime versions,including Hugo [^2]. Even though this had some potential, I opted in using `hvm` for the reasons stated on [the related section](#6-installing-via-hugo-version-manager).
+[`asdf`](https://asdf-vm.com/) is a version manager which supports Hugo among other tools [^2]. Even though this had some potential, I opted in using `hvm` for the reasons stated on [the related section](#6-installing-via-hugo-version-manager).
 
 ### 3. Installing via Docker
 
 Another way that you can manage different Hugo versions is using Docker [^3]. Again I felt that this was overkill.
 
-### 4. Building from the source
+### 4. Building from the Source
 
 I feel this is to much work if the only thing that you need on your day to day is to manage your site. [^4]
 
 ### 5. Create a custom tap with the specific Hugo versions of your choice
 
-Once again, creating a GitHub repo to manage your own tap feels a lot of work, at least when there are other alternatives. On the other hand, maybe it's better suited if you do not want to install a third-party version manager on your machine and use your own tap and `brew`. [^5]
+You can maintain your own Homebrew tap to install any Hugo versions you need. This is a good alternative when you don't want to install a third-party package manager. [^5]
 
 ### 6. Installing via Hugo Version Manager
 
-This was the option that I opted in. `hvm` allows to easily set a default Hugo version and use different ones if needed for different projects. It is installed with `go` and actively maintained by one of Hugo's maintainers([Joe Mooring](https://github.com/jmooring)). It suited my needs like a glove. [^6] 
+This was the option that I opted in. `hvm` has the following benefits that are perfect for me:
+1. Enables to install and work with a different  Hugo versions.
+2. Falls back to existing Hugo installations whenever you need to.
+
+You can  install it with `go` and is maintained by one of Hugo's maintainers([Joe Mooring](https://github.com/jmooring)). It suited my needs like a glove. [^6] 
 
 #### Managing Hugo with Hugo Version Manager
 
-Following the official instructions, assuming the Go programming language is already present, we can install `hvm` by the following command:
+First of all, make sure that you have installed the Go programming language. Then proceed following the official instructions:
 
 ```bash
 $ go install github.com/jmooring/hvm@latest
 ````
 
-The previous command probably installs `hvm` on Go's path, under the `bin` directory. To double check that run the following:
+The previous command installs `hvm` on Go's path, under the `bin` directory. To double check that run the following:
 
 ```bash
 $ ls "$(echo $(go env GOPATH)/bin)"
@@ -112,7 +116,7 @@ hugo() {
 
 ```
 
-The output is a method which allows to fallback to the existing `hugo` installation when  `hvm` is not configured. Add the method above on the `.zshrc` file(or the appropriate configuration file of the shell of your choice).
+Copy and paste the output from above on the `.zshrc` file(or the appropriate configuration file of the shell of your choice).
 
 Double check that there are no Hugo installations managed by `hvm`.
 ```bash
