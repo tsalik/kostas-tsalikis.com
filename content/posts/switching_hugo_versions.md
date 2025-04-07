@@ -13,10 +13,10 @@ draft: true
 
  #### TL;DR
 
- 1. You can't manage multiple Hugo versions through `brew`.
+ 1. You can't manage different Hugo versions through `brew`.
  2. Reverting to older versions through `brew` is difficult.
- 3. There are a couple of ways of using multiple Hugo versions simultaneously. Pick what's best for your case.
- 4. Hugo Version Manager is an easy way of handling multiple Hugo versions whilst allowing existing installations coexist.  
+ 3. You can run different Hugo versions in a few ways. Pick what's best for your case.
+ 4. Hugo Version Manager offers an easy way of switching between different Hugo versions. 
 
 
 For quite some time I wanted to build for myself a knowledge base. Most of the times I take manual notes (yes, on an actual physical notepad). It's too difficult though to store and query them when you need a refresher. I also take notes in Notion, but I would like to be able to browse my knowledge base offline. Finally, I decided to build my unified knowledge base as a static site with Hugo. 
@@ -162,8 +162,7 @@ hugo v0.104.3+extended darwin/arm64 BuildDate=unknown
 
 ## Final Outcome
 
-Now I am ready to use the newer Hugo version that I need to build my knowledge base static site and continue using the old one for my blog.
-
+Now I can still build my blog using the old Hugo version and use a newer version to install a modern theme elsewhere.
 
 [^1]: https://www.brycewray.com/posts/2023/02/hugo-via-npm/)
 [^2]: https://www.andbible.com/post/hugo/how-to-switch-to-different-version-of-hugo-framework/#4-use-version-managers-like-asdf-flexible-for-multiple-projects
