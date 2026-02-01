@@ -1,11 +1,30 @@
 [
   {
+    "company": "Kaizen",
+    "projects": [
+      {
+        "name": "Betano",
+        "link": "https://play.google.com/store/apps/details?id=com.kaizengaming.betano",
+        "image": "https://play-lh.googleusercontent.com/Tx-7rJEXl2gTIkYC5rovyhmBUdcsalaDDsQkyLRqASiYxNzlNljhxOniKCgVIi3uNyk=w240-h480",
+        "description": "Betano provides a regulated sports betting platform with an emphasis on transparency, reliability, and responsible use.",
+        "show": true
+      },
+      {
+        "name": "Stoiximan",
+        "link": "https://play.google.com/store/apps/details?id=com.kaizengaming.stoiximan", 
+        "image": "https://play-lh.googleusercontent.com/IEho25dx-rJ9pVcTt1RmKNB1Dl8mud_TrG8hHu3ON5XCm27TIWhHK93GtXKFYDkpKndJvCAPFQ5vOfPeOYpoLQ=w240-h480", 
+        "description": "Stoiximan provides a regulated sports betting platform with an emphasis on transparency, reliability, and responsible use.",
+        "show": true
+      }
+    ]
+  },
+  {
     "company": "Marshmallow",
     "projects": [
       {
         "name": "Marshmallow",
         "link": "https://play.google.com/store/apps/details?id=com.marshmallow.marshmallow",
-        "image": "https://play-lh.googleusercontent.com/QOs_mn5j8ddcfE4cIkvjetD1QefaKQxQNmhIvdGjPghAToVCjMQvW_Ig0-5qVKvO4A=w240-h480",
+        "image": "https://play-lh.googleusercontent.com/LVlfabcTW2FVuMm_juGrxf2q-Jb-ItlAqQMTQMwvXCLNeYuWIqmhwwr3O6Mhbel7hqE=w240-h480",
         "description": "Marshmallow makes insurance more accessible and more effordable for as many people as possible",
         "show": true
       }
@@ -19,26 +38,26 @@
         "link": "https://play.google.com/store/apps/details?id=ro.firstbank.direct",
         "image": "https://play-lh.googleusercontent.com/E0xlJWiGslJdxlWcuxSoRg2BYqkF6ZfSuKAOGWQf0A3Cfl2uu1xr0tjuPF3vgNezVw=s180",
         "description": "Banking app for First Bank",
-        "show": true
+        "show": false
       },
       {
         "name": "Combank Digital",
         "link": "https://play.google.com/store/apps/details?id=combank.com.combankdigital",
-        "image": "https://play-lh.googleusercontent.com/4YO8gqSPDD59smkzZYFFY4nBgRLQ3u9KCJKc8MF3obTz1ok7Uu3jAHNtMK38cRyx3UWF=s180",
+        "image": "https://play-lh.googleusercontent.com/4YO8gqSPDD59smkzZYFFY4nBgRLQ3u9KCJKc8MF3obTz1ok7Uu3jAHNtMK38cRyx3UWF=w240-h480",
         "description": "Banking app for Commercial Bank of Ceylon",
         "show": true
       },
       {
         "name": "VM Express Mobile App",
-        "link": "https://play.google.com/store/apps/details?id=com.victoriamutual.live.direct",
-        "image": "https://play-lh.googleusercontent.com/qN31zVamgOKZ-ZL1cLhX8yp61NNLMVgQ45_fszDeusYAwQnw2Q0HRq_xmQoxvQFaLA=s180",
+        "link": "https://play.google.com/store/apps/details?id=com.victoriamutual.live.direct", 
+        "image": "https://play-lh.googleusercontent.com/l15d5I5uXLn5iemx_OOkXA0AqPIH3Wr85zg7I4PXuSSUO9-Jrmdj_SZ4e1GVOIoPR_c=w240-h480", 
         "description": "Banking app for Victoria Mutual Bank",
         "show": true
       },
       {
         "name": "CPM Movil",
         "link": "https://play.google.com/store/apps/details?id=coop.cpm.cpmenlinea.mobile",
-        "image": "https://play-lh.googleusercontent.com/zH0z8o0E9Fs_xUn49j7j5-mBwRhYAslsAR5C9YD3M-APlYgNwCwyD-6et6qFbMv2jFc=s180",
+        "image": "https://play-lh.googleusercontent.com/x3X4JufDhDvXJHh0_vQk9fv65k3VQXcr5xdC-fQ6VLDDWjip0VlFbj8AMx7qn3Q9sw=w240-h480",
         "description": "Banking app for Caja Popular Mexicana",
         "show": true
       },
@@ -47,14 +66,14 @@
         "link": "https://play.google.com/store/apps/details?id=gr.pancretabank.direct",
         "image": "https://play-lh.googleusercontent.com/L5Xf2CHCImXJcTwdbFKE3XcDcO2zJ1JLxOQuWdgwkYZC5tX5a8Hh08URc-C7c9W3qNc=s180",
         "description": "Banking app for Pancreta Bank",
-        "show": true
+        "show": false
       },
       {
         "name": "Clarien iBank Mobile",
         "link": "https://play.google.com/store/apps/details?id=com.clarienibank.direct",
         "image": "https://play-lh.googleusercontent.com/k1fSnRN8sM6djq1S0XfhUVHFr38JBBneK9EVdfww9zB9uTLTLv_qPfmHxW3pefICZr_J=s180",
         "description": "Banking app for Clarien Bank",
-        "show": true
+        "show": false
       }
     ]
   },
@@ -66,7 +85,7 @@
         "link": "https://play.google.com/store/apps/details?id=gr.mobile.freemeteo",
         "image": "https://lh3.googleusercontent.com/O3Ncx5cq4eQVf4gehGVRqjfj1cNQdBBZ4Y2FNOhxs1E9ipynpXfE5CXHMrMib7E5jL67=w300",
         "description": "Weather app with free and paid versions, featuring widgets",
-        "show": true
+        "show": false
       },
       {
         "name": "Gregory's",
@@ -97,7 +116,7 @@
       {
         "name": "go4More",
         "link": "https://play.google.com/store/apps/details?id=gr.nbg.go4more",
-        "image": "https://lh3.ggpht.com/Go3T84E_Br8gBU8aY_uXDdD7rFnqQ_SyzFQ1Wci4U4E_vW3VpBVokldMCp2gAXXbQug=w300",
+        "image": "https://play-lh.googleusercontent.com/YqmuDrkorD1Sc-JKAJZWGaTsgd1siT3clpQIRZ7TCoHGtcww4goEf8fwttbGntlpNyO8=w240-h480",
         "description": "App for the go4more loyalty program of National Bank of Greece",
         "show": true
       },
@@ -106,7 +125,7 @@
         "link": "https://play.google.com/store/apps/details?id=com.cnn.cnngreece",
         "image": "https://lh3.googleusercontent.com/y86W50lxS1xIMjOujCDgDqGh1yIYBaTWG3H0q-D8rcdgBDO8BE_i8JTML1hydCaFMg4=w300",
         "description": "News app for CNN Greece",
-        "show": true
+        "show": false
       },
       {
         "name": "AB",
